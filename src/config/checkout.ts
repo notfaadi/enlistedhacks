@@ -1,13 +1,13 @@
-import { CHECKOUT_URLS } from './checkout-redirects.mjs';
+import { CHECKOUT_URLS, LEVOCHEATS_ENLISTED_CHECKOUT } from './checkout-redirects.mjs';
 
 /**
- * External checkout URLs — server-side redirect targets only (never use as visible href).
+ * External checkout URLs — all products use Levocheats enlisted checkout.
  */
 export const CHECKOUT = CHECKOUT_URLS;
 
 export type CheckoutProduct = keyof typeof CHECKOUT;
 
-/** URL slug for /go/[slug]/ checkout redirect pages. */
+/** URL slug for /go/[slug]/ legacy redirect routes. */
 export const CHECKOUT_SLUGS: Record<CheckoutProduct, string> = {
   enlisted: 'enlisted',
   skinChanger: 'skin-changer',
@@ -19,19 +19,14 @@ export const CHECKOUT_SLUG_TO_PRODUCT = Object.fromEntries(
   Object.entries(CHECKOUT_SLUGS).map(([product, slug]) => [slug, product as CheckoutProduct]),
 ) as Record<string, CheckoutProduct>;
 
-/** Checkout href for buttons and CTAs (enlisted = direct Levocheats URL). */
-export function checkoutPath(product: CheckoutProduct = 'enlisted'): string {
-  if (product === 'enlisted') {
-    return CHECKOUT.enlisted;
-  }
-  return `/go/${CHECKOUT_SLUGS[product]}/`;
+/** Checkout href for every Buy now / header CTA. */
+export function checkoutPath(_product: CheckoutProduct = 'enlisted'): string {
+  return LEVOCHEATS_ENLISTED_CHECKOUT;
 }
 
-/** Default product checkout redirect (replaces legacy Discord CTAs). */
 export const PRIMARY_CHECKOUT_PATH = checkoutPath('enlisted');
 
-/** Levocheats enlisted checkout (same as Buy now on hack tiers). */
-export const ENLISTED_CHECKOUT_URL = CHECKOUT.enlisted;
+export const ENLISTED_CHECKOUT_URL = LEVOCHEATS_ENLISTED_CHECKOUT;
 
 /** Open off-site checkout in a new tab when href is absolute. */
 export function externalCheckoutLinkAttrs(href: string): Record<string, string> {
@@ -39,62 +34,34 @@ export function externalCheckoutLinkAttrs(href: string): Record<string, string> 
   return { target: '_blank', rel: 'noopener noreferrer' };
 }
 
-/** Map internal product slugs to checkout redirect paths. */
-export function checkoutForSlug(slug: string): string {
-  switch (slug) {
-    case 'unlock-all':
-      return checkoutPath('skinChanger');
-    case 'hwid-spoofer':
-      return checkoutPath('hwidSpoofer');
-    case 'ugc':
-    case 'account-recovery':
-      return checkoutPath('ugc');
-    case 'cloud-dma':
-      return checkoutPath('enlisted');
-    case 'lite':
-    case 'pro':
-    case 'elite':
-    default:
-      return checkoutPath('enlisted');
-  }
+/** All product slugs → Levocheats enlisted checkout. */
+export function checkoutForSlug(_slug: string): string {
+  return LEVOCHEATS_ENLISTED_CHECKOUT;
 }
 
-/** Resolve blog CTA or legacy href values to checkout URLs. */
+/** Resolve blog CTA or legacy href values to Levocheats checkout. */
 export function resolveCheckoutHref(href: string): string {
   const path = href.startsWith('/') ? href : `/${href}`;
-  if (path === '/go/enlisted/' || path === '/go/enlisted') {
-    return CHECKOUT.enlisted;
+  if (path.startsWith('/go/')) {
+    return LEVOCHEATS_ENLISTED_CHECKOUT;
   }
 
   if (!href.startsWith('http')) {
     return path;
   }
 
-  for (const [product, url] of Object.entries(CHECKOUT) as [CheckoutProduct, string][]) {
-    if (href === url || href.startsWith(`${url}?`) || href.startsWith(`${url}/`)) {
-      return checkoutPath(product);
-    }
+  if (href.includes('zadeyo.com') || href.includes('levocheats.com')) {
+    return LEVOCHEATS_ENLISTED_CHECKOUT;
   }
 
-  // Legacy / encoded product paths → internal checkout
   if (
-    href.includes('%2Fproducts%2Fcloud-dma') ||
-    href.includes('/products/cloud-dma') ||
-    href.includes('/products/enlisted-hacks/cloud-dma')
+    href.includes('%2Fproducts%2F') ||
+    href.includes('/products/enlisted') ||
+    href.includes('/products/hwid') ||
+    href.includes('/products/ugc') ||
+    href.includes('/products/skin')
   ) {
-    return checkoutPath('enlisted');
-  }
-  if (href.includes('%2Fproducts%2Fskin-changer') || href.includes('/products/skin-changer')) {
-    return checkoutPath('skinChanger');
-  }
-  if (href.includes('%2Fproducts%2Fhwid-spoofer') || href.includes('/products/hwid-spoofer')) {
-    return checkoutPath('hwidSpoofer');
-  }
-  if (href.includes('%2Fproducts%2Fugc') || href.includes('/products/ugc')) {
-    return checkoutPath('ugc');
-  }
-  if (href.includes('%2Fproducts%2Fenlisted') || href.includes('/products/enlisted')) {
-    return checkoutPath('enlisted');
+    return LEVOCHEATS_ENLISTED_CHECKOUT;
   }
 
   return href;

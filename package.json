@@ -15,7 +15,8 @@
     "optimize:images": "node scripts/optimize-images.mjs",
     "images:enlisted": "node scripts/import-user-gameplay.mjs && node scripts/fetch-enlisted-gameplay.mjs && node scripts/optimize-images.mjs",
     "images:seo-og": "node scripts/generate-seo-og-images.mjs",
-    "test:seo": "tsx --test tests/seo-meta.test.ts"
+    "test:seo": "tsx --test tests/seo-meta.test.ts",
+    "test:checkout": "tsx --test tests/checkout-links.test.ts"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

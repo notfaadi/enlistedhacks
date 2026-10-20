@@ -1,0 +1,160 @@
+---
+import { ENLISTED_CHECKOUT_URL, externalCheckoutLinkAttrs } from '../../config/checkout';
+import {
+  checkoutUrlWithPlan,
+  formatPlanPrice,
+  getProductPlans,
+  type ProductPlan,
+} from '../../data/productPricing';
+import Icon from '../icons/Icon.astro';
+import { Badge } from '@/components/starwind/badge';
+import { Button } from '@/components/starwind/button';
+import { RadioGroup, RadioGroupItem } from '@/components/starwind/radio-group';
+
+interface Props {
+  productSlug: string;
+  /** Panel heading above plan list. */
+  planHeading?: string;
+  class?: string;
+  compact?: boolean;
+}
+
+const {
+  productSlug,
+  planHeading = 'Select plan',
+  class: className,
+  compact = false,
+} = Astro.props;
+
+const plans = getProductPlans(productSlug);
+const defaultPlan = plans[0]!;
+const checkoutBase = ENLISTED_CHECKOUT_URL;
+---
+
+<div
+  class:list={['plan-checkout', className]}
+  data-product-checkout
+  data-buy-url={checkoutBase}
+  data-plans={JSON.stringify(plans)}
+>
+  <p class="plan-checkout__eyebrow text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+    {planHeading}
+  </p>
+
+  <RadioGroup
+    defaultValue={defaultPlan.id}
+    name={`plan-${productSlug}`}
+    legend={planHeading}
+    class="plan-checkout__options mt-3 flex flex-col gap-2.5"
+  >
+    {
+      plans.map((plan: ProductPlan) => (
+        <label class="plan-checkout__option flex cursor-pointer items-center justify-between gap-3 rounded-xl border border-border/80 bg-background/80 p-4 transition-colors has-data-checked:border-primary has-data-checked:bg-primary/10 has-data-checked:shadow-[0_0_0_1px_color-mix(in_oklch,var(--primary)_35%,transparent)]">
+          <span class="flex min-w-0 items-center gap-3">
+            <RadioGroupItem value={plan.id} variant="primary" />
+            <span class="min-w-0 text-left">
+              <span class="flex flex-wrap items-center gap-2">
+                <span class="text-sm font-semibold text-foreground">{plan.label}</span>
+                {plan.badge === 'popular' && (
+                  <Badge tone="primary" appearance="solid" size="sm" class="rounded-md px-1.5 py-0 text-[10px] uppercase tracking-wide">
+                    Popular
+                  </Badge>
+                )}
+              </span>
+              {plan.subtitle && (
+                <span class="mt-0.5 block text-xs text-muted-foreground">{plan.subtitle}</span>
+              )}
+            </span>
+          </span>
+          <span class="shrink-0 text-sm font-semibold tabular-nums text-foreground">
+            {formatPlanPrice(plan.priceUsd)}
+          </span>
+        </label>
+      ))
+    }
+  </RadioGroup>
+
+  <Button
+    as="a"
+    href={checkoutUrlWithPlan(checkoutBase, defaultPlan.id)}
+    variant="primary"
+    size="lg"
+    class="plan-checkout__buy mt-5 w-full rounded-xl text-base font-semibold"
+    data-checkout-buy
+    {...externalCheckoutLinkAttrs(checkoutBase)}
+  >
+    <Icon name="package" size={18} />
+    <span data-checkout-buy-label>
+      Buy now — {formatPlanPrice(defaultPlan.priceUsd)}
+    </span>
+  </Button>
+
+  {
+    !compact && (
+      <ul class="plan-checkout__trust mt-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-muted-foreground">
+        <li class="inline-flex items-center gap-1.5">
+          <Icon name="instantDelivery" size={14} class="text-primary" />
+          Instant delivery
+        </li>
+        <li class="inline-flex items-center gap-1.5">
+          <Icon name="autoUpdates" size={14} class="text-primary" />
+          Free updates
+        </li>
+        <li class="inline-flex items-center gap-1.5">
+          <Icon name="support247" size={14} class="text-primary" />
+          24/7 support
+        </li>
+      </ul>
+    )
+  }
+</div>
+
+<script>
+  const initProductCheckoutPanels = () => {
+    document.querySelectorAll('[data-product-checkout]').forEach((root) => {
+      if (root.hasAttribute('data-checkout-bound')) return;
+      root.setAttribute('data-checkout-bound', '');
+
+      let buyUrl =
+        root.getAttribute('data-buy-url') ??
+        'https://levocheats.com/go/FDI?to=%2Fenlisted-cheats';
+      if (buyUrl.includes('zadeyo.com') || buyUrl.startsWith('/go/')) {
+        buyUrl = 'https://levocheats.com/go/FDI?to=%2Fenlisted-cheats';
+      }
+      const plansRaw = root.getAttribute('data-plans');
+      if (!plansRaw) return;
+
+      type Plan = { id: string; priceUsd: number; priceNote?: string };
+      let plans: Plan[] = [];
+      try {
+        plans = JSON.parse(plansRaw) as Plan[];
+      } catch {
+        return;
+      }
+
+      const group = root.querySelector('[data-sw-radio-group]');
+      const buyBtn = root.querySelector<HTMLAnchorElement>('[data-checkout-buy]');
+      const buyLabel = root.querySelector('[data-checkout-buy-label]');
+      if (!group || !buyBtn) return;
+
+      const sync = () => {
+        const planId = group.getAttribute('data-value') ?? plans[0]?.id;
+        const plan = plans.find((p) => p.id === planId) ?? plans[0];
+        if (!plan) return;
+
+        const price = `$${plan.priceUsd.toFixed(2)}`;
+        if (buyLabel) buyLabel.textContent = `Buy now — ${price}`;
+        const separator = buyUrl.includes('?') ? '&' : '?';
+        buyBtn.href = `${buyUrl}${separator}plan=${plan.id}`;
+      };
+
+      group.addEventListener('click', () => window.setTimeout(sync, 0));
+      const observer = new MutationObserver(sync);
+      observer.observe(group, { attributes: true, attributeFilter: ['data-value'] });
+      sync();
+    });
+  };
+
+  initProductCheckoutPanels();
+  document.addEventListener('astro:after-swap', initProductCheckoutPanels);
+</script>

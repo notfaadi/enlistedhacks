@@ -10,7 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/starwind/card';
-import { externalCheckoutLinkAttrs } from '../config/checkout';
+import { ENLISTED_CHECKOUT_URL, externalCheckoutLinkAttrs, resolveCheckoutHref } from '../config/checkout';
 
 interface Props {
   label: string;
@@ -45,6 +45,7 @@ const {
 } = Astro.props;
 
 const displayFeatures = features.slice(0, maxFeatures);
+const checkoutHref = resolveCheckoutHref(buyUrl || ENLISTED_CHECKOUT_URL);
 
 const statusBadgeIcon = (text: string): IconName => {
   if (/limited/i.test(text)) return 'alert';
@@ -106,11 +107,12 @@ const statusBadgeIcon = (text: string): IconName => {
   <CardFooter class="flex flex-col gap-2 sm:flex-row">
     <Button
       as="a"
-      href={buyUrl}
+      href={checkoutHref}
       variant="primary"
       size="sm"
       class="w-full sm:flex-1"
-      {...externalCheckoutLinkAttrs(buyUrl)}
+      data-checkout-buy
+      {...externalCheckoutLinkAttrs(checkoutHref)}
     >
       {buyLabel}
       <Icon name="arrowRight" size={17} />

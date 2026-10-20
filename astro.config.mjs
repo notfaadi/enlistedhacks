@@ -2,6 +2,14 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import { sitemapSerialize } from './src/config/sitemap.ts';
+import { CHECKOUT_PATH_REDIRECTS } from './src/config/checkout-redirects.mjs';
+
+const checkoutRedirects = Object.fromEntries(
+  [...CHECKOUT_PATH_REDIRECTS.entries()].map(([path, destination]) => {
+    const key = path.endsWith('/') ? path : `${path}/`;
+    return [key, { status: 302, destination }];
+  }),
+);
 
 export default defineConfig({
   site: 'https://enlistedhacks.net',
@@ -18,6 +26,7 @@ export default defineConfig({
     '/products/dota-2-cheats/elite/': '/products/enlisted-hacks/elite/',
     '/products/dota-2-cheats/utilities/': '/products/enlisted-hacks/utilities/',
     '/contact/': '/support/',
+    ...checkoutRedirects,
   },
   compressHTML: true,
   prefetch: {

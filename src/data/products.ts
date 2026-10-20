@@ -1,5 +1,5 @@
 import { t } from '../i18n';
-import { checkoutForSlug, checkoutPath } from '../config/checkout';
+import { ENLISTED_CHECKOUT_URL } from '../config/checkout';
 import type { IconName } from '../components/icons/types';
 
 export interface ProductSlide {
@@ -618,7 +618,7 @@ function buildTierPages(): ProductPage[] {
       features: cheat.features,
       more: cheat.more,
       variant: cheat.variant,
-      buyUrl: checkoutForSlug(slug),
+      buyUrl: ENLISTED_CHECKOUT_URL,
       images: content.images,
       overview: content.overview,
       acquisition: acquisitionFor(displayName),
@@ -650,7 +650,7 @@ function buildUtilityPages(): ProductPage[] {
         desc: product.desc,
         features: product.features,
         more: product.more,
-        buyUrl: checkoutForSlug(slug),
+        buyUrl: ENLISTED_CHECKOUT_URL,
         images: content.images,
         overview: content.overview,
         acquisition: acquisitionFor(product.title),
@@ -702,5 +702,5 @@ export const productHub = {
   title: t.products.title,
   subtitle: t.products.subtitle,
   description: 'Enlisted Elite hacks with aimbot and ESP, plus HWID spoofer, UGC recovery and Uniform changer for PC.',
-  buyUrl: checkoutPath('enlisted'),
+  buyUrl: ENLISTED_CHECKOUT_URL,
 };

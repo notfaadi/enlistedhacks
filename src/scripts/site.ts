@@ -101,6 +101,28 @@ function initThemeMetaColor() {
   observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 }
 
+const LEVOCHEATS_CHECKOUT = 'https://levocheats.com/go/FDI?to=%2Fenlisted-cheats';
+
+/** Rewrite stale /go/* or Zadeyo checkout links after navigation or old cached HTML. */
+function initCheckoutLinks() {
+  const selectors = 'a[href], a[data-checkout-buy]';
+  document.querySelectorAll<HTMLAnchorElement>(selectors).forEach((anchor) => {
+    const href = anchor.getAttribute('href') ?? '';
+    if (
+      href.includes('zadeyo.com') ||
+      href.startsWith('/go/') ||
+      href.includes('/go/enlisted') ||
+      href.includes('/go/hwid-spoofer') ||
+      href.includes('/go/ugc') ||
+      href.includes('/go/skin-changer')
+    ) {
+      anchor.href = LEVOCHEATS_CHECKOUT;
+      anchor.target = '_blank';
+      anchor.rel = 'noopener noreferrer';
+    }
+  });
+}
+
 function bootSite() {
   initFonts();
   initFaqFilters();
@@ -108,6 +130,7 @@ function bootSite() {
   initInPageScroll();
   initSkipLink();
   initThemeMetaColor();
+  initCheckoutLinks();
 }
 
 if (document.readyState === 'loading') {
@@ -115,3 +138,7 @@ if (document.readyState === 'loading') {
 } else {
   bootSite();
 }
+
+document.addEventListener('astro:after-swap', () => {
+  initCheckoutLinks();
+});

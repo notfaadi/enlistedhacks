@@ -1,81 +1,74 @@
 ---
 import '../styles/product-cheat-page.css';
 import { t } from '../i18n';
-import { productPages } from '../data/products';
-import { cheatTierIcons, productCategoryIcons } from '../data/sectionIcons';
+import { getProductPage } from '../data/products';
+import { productCategoryIcons } from '../data/sectionIcons';
 import SectionHeader from './SectionHeader.astro';
-import CatalogCard from './CatalogCard.astro';
+import PlanCheckoutPanel from './product/PlanCheckoutPanel.astro';
+import Icon from './icons/Icon.astro';
+import { Button } from '@/components/starwind/button';
+import { Badge } from '@/components/starwind/badge';
 import { productPath } from '../utils/path';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '@/components/starwind/carousel';
 
 const s = t.products;
+const cloudDma = getProductPage('cloud-dma');
+if (!cloudDma) throw new Error('cloud-dma product missing');
 
-function cardIcon(product: (typeof productPages)[number]) {
-  if (product.kind === 'tier') {
-    return cheatTierIcons[product.name] ?? 'crosshair';
-  }
-  return productCategoryIcons[product.category ?? ''] ?? 'package';
-}
-
-function cardLabel(product: (typeof productPages)[number]) {
-  if (product.kind === 'tier') {
-    return product.tier ?? product.name;
-  }
-  return product.category ?? 'Utility';
-}
+const categoryIcon = productCategoryIcons[cloudDma.category ?? ''] ?? 'package';
 ---
 
 <section id="products" class="py-16 md:py-24" aria-labelledby="products-title">
   <div class="mx-auto max-w-6xl px-5">
-    <SectionHeader eyebrow={s.eyebrow} title={s.title} desc={s.subtitle} titleId="products-title" />
+    <SectionHeader
+      eyebrow={s.eyebrow}
+      title="Enlisted Cloud DMA"
+      desc="Aimbot, ESP and wallhack over hardware DMA — pick a plan and checkout on Levocheats."
+      titleId="products-title"
+    />
 
-    <div class="products-carousel" data-products-carousel>
-      <Carousel
-        autoInit
-        opts={{ align: 'start', containScroll: 'trimSnaps', dragFree: false }}
-        class="products-carousel__root"
-      >
-        <div class="products-carousel__stage">
-          <CarouselPrevious class="products-carousel__arrow products-carousel__arrow--prev" hidden />
-          <CarouselNext class="products-carousel__arrow products-carousel__arrow--next is-visible" />
-          <div class="products-carousel__viewport">
-            <CarouselContent class="products-carousel__track">
-              {
-                productPages.map((product) => (
-                  <CarouselItem class="products-carousel__slide">
-                    <CatalogCard
-                      class="catalog-card--carousel"
-                      label={cardLabel(product)}
-                      title={product.title}
-                      href={productPath(product.slug)}
-                      buyUrl={product.buyUrl}
-                      features={product.features}
-                      more={product.more}
-                      icon={cardIcon(product)}
-                      badge={product.badge}
-                      variant={product.variant}
-                      buyLabel="Buy now"
-                      viewLabel="View details"
-                      maxFeatures={5}
-                    />
-                  </CarouselItem>
-                ))
-              }
-            </CarouselContent>
-          </div>
+    <div class="home-cloud-dma mt-10 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,22rem)] lg:items-start lg:gap-10">
+      <article class="rounded-2xl border border-border bg-card p-6 shadow-sm md:p-8">
+        <div class="flex flex-wrap items-center gap-2">
+          <Badge tone="primary" appearance="outline" size="sm" class="gap-1">
+            <Icon name={categoryIcon} size={12} />
+            {cloudDma.category}
+          </Badge>
+          {cloudDma.badge && (
+            <Badge tone="primary" appearance="soft" size="sm">
+              {cloudDma.badge}
+            </Badge>
+          )}
         </div>
-      </Carousel>
+
+        <h2 class="mt-4 font-[family-name:var(--font-heading)] text-2xl font-bold leading-snug md:text-3xl">
+          {cloudDma.title}
+        </h2>
+        <p class="mt-3 text-muted-foreground leading-relaxed">{cloudDma.desc}</p>
+
+        <ul class="mt-6 space-y-2.5 text-sm text-muted-foreground">
+          {cloudDma.features.map((feature) => (
+            <li class="flex items-start gap-2">
+              <Icon name="check" size={14} class="mt-0.5 shrink-0 text-primary" />
+              <span>{feature}</span>
+            </li>
+          ))}
+          {cloudDma.more > 0 && (
+            <li class="text-xs text-muted-foreground">+{cloudDma.more} more in the operator portal</li>
+          )}
+        </ul>
+
+        <Button as="a" href={productPath(cloudDma.slug)} variant="outline" size="sm" class="mt-8 rounded-full">
+          View Cloud DMA details
+          <Icon name="arrowRight" size={16} />
+        </Button>
+      </article>
+
+      <aside
+        class="home-cloud-dma__checkout overflow-hidden rounded-2xl border border-primary/35 bg-card p-5 shadow-md ring-1 ring-primary/15 md:p-6"
+        aria-label="Cloud DMA checkout"
+      >
+        <PlanCheckoutPanel productSlug="cloud-dma" planHeading="Select plan" />
+      </aside>
     </div>
   </div>
 </section>
-
-<script>
-  import { setupProductsCarousel } from '../scripts/products-carousel.ts';
-  setupProductsCarousel();
-</script>

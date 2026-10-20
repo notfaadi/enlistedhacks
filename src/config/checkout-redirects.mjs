@@ -1,12 +1,16 @@
-/** Checkout destinations keyed by internal product id (no affiliate codes). */
+/** Levocheats enlisted checkout — all Buy now buttons use this URL. */
+export const LEVOCHEATS_ENLISTED_CHECKOUT =
+  'https://levocheats.com/go/FDI?to=%2Fenlisted-cheats';
+
+/** Checkout destinations keyed by internal product id (all → Levocheats enlisted). */
 export const CHECKOUT_URLS = {
-  enlisted: 'https://levocheats.com/go/FDI?to=%2Fenlisted-cheats',
-  skinChanger: 'https://zadeyo.com/products/skin-changer',
-  hwidSpoofer: 'https://zadeyo.com/products/hwid-spoofer',
-  ugc: 'https://zadeyo.com/products/ugc',
+  enlisted: LEVOCHEATS_ENLISTED_CHECKOUT,
+  skinChanger: LEVOCHEATS_ENLISTED_CHECKOUT,
+  hwidSpoofer: LEVOCHEATS_ENLISTED_CHECKOUT,
+  ugc: LEVOCHEATS_ENLISTED_CHECKOUT,
 };
 
-/** Checkout paths → external product URLs (used by Node serve + Astro middleware). */
+/** Checkout paths → Levocheats (legacy /go/* bookmarks still work). */
 export const CHECKOUT_PATH_REDIRECTS = new Map([
   ['/go/enlisted', CHECKOUT_URLS.enlisted],
   ['/go/enlisted/', CHECKOUT_URLS.enlisted],
