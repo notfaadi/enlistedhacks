@@ -49,6 +49,8 @@ test('homepage has exactly one h1 and self-referencing hreflang', () => {
   assert.equal(hreflangEn, canonical, 'hreflang en must match canonical URL');
   const hreflangEnUs = html.match(/<link rel="alternate" hreflang="en-US" href="([^"]+)"/)?.[1];
   assert.equal(hreflangEnUs, canonical, 'hreflang en-US must match canonical URL');
+  const hreflangDefault = html.match(/<link rel="alternate" hreflang="x-default" href="([^"]+)"/)?.[1];
+  assert.equal(hreflangDefault, canonical, 'hreflang x-default must match canonical URL');
   const desc = html.match(/<meta name="description" content="([^"]+)"/)?.[1] ?? '';
   assert.ok(desc.length >= 120 && desc.length <= 165, `homepage meta description length ${desc.length}`);
 });

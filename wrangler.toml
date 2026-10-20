@@ -1,5 +1,5 @@
-# Static Astro site — Worker handles www/http/legacy host 301s; assets from dist/.
-name = "enlisted-cheats-com"
+# Production Worker (custom domains on enlistedhack.net; add enlistedhacks.net when zone is on this account).
+name = "enlistedhacks"
 main = "worker.mjs"
 compatibility_date = "2025-10-11"
 workers_dev = true
@@ -9,11 +9,21 @@ directory = "./dist"
 binding = "ASSETS"
 not_found_handling = "404-page"
 html_handling = "auto-trailing-slash"
+# Host 301s in worker.mjs must run before a matching index.html is served.
+run_worker_first = true
 
-# Attach when zone enlistedhacks.net is on this Cloudflare account:
+[[routes]]
+pattern = "enlistedhack.net"
+custom_domain = true
+
+[[routes]]
+pattern = "www.enlistedhack.net"
+custom_domain = true
+
+# Uncomment after adding zone enlistedhacks.net to this Cloudflare account (see docs/cloudflare-canonical-host.md):
 # [[routes]]
-# pattern = "enlistedhacks.net/*"
-# zone_name = "enlistedhacks.net"
+# pattern = "enlistedhacks.net"
+# custom_domain = true
 # [[routes]]
-# pattern = "www.enlistedhacks.net/*"
-# zone_name = "enlistedhacks.net"
+# pattern = "www.enlistedhacks.net"
+# custom_domain = true
