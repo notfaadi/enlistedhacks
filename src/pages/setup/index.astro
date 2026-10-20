@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import WhySetupSection from '../../components/WhySetupSection.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+---
+
+<BaseLayout seoRoute="/setup/">
+  <div class="mx-auto max-w-6xl px-5 pt-8 md:pt-10">
+    <Breadcrumbs
+      items={[
+        { name: 'Home', path: '/' },
+        { name: 'Setup', path: '/setup/' },
+      ]}
+    />
+    <header class="mt-6 max-w-3xl">
+      <h1 class="text-3xl font-bold uppercase md:text-4xl">Enlisted setup</h1>
+      <p class="mt-4 text-lg text-muted-foreground">
+        Install and launch Enlisted Hacks on Windows PC after checkout. Follow each step before your first match.
+      </p>
+    </header>
+  </div>
+  <WhySetupSection />
+</BaseLayout>

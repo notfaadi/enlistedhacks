@@ -2,7 +2,12 @@
 import '../styles/blog-pages.css';
 import ResponsiveImage from './ResponsiveImage.astro';
 import Icon from './icons/Icon.astro';
-import { CARD_IMAGE_SIZES, CARD_IMAGE_WIDTHS } from '../utils/responsiveImage';
+import {
+  BLOG_FEATURED_IMAGE_SIZES,
+  BLOG_HERO_IMAGE_WIDTHS,
+  CARD_IMAGE_SIZES,
+  CARD_IMAGE_WIDTHS,
+} from '../utils/responsiveImage';
 import { blogPostPath } from '../utils/path';
 import type { BlogPost } from '../i18n/types';
 import { t } from '../i18n';
@@ -21,12 +26,26 @@ interface Props {
   showDate?: boolean;
   /** Full-width split player on blog index — same card UI as grid cards */
   layout?: 'default' | 'featured';
+  /** Shorthand: featured layout + eager LCP image */
+  featured?: boolean;
   class?: string;
 }
 
-const { post, index = 0, eager = false, showDate = false, layout = 'default', class: className } =
-  Astro.props;
-const isFeatured = layout === 'featured';
+const {
+  post,
+  index = 0,
+  eager: eagerProp = false,
+  showDate = false,
+  layout = 'default',
+  featured: featuredProp = false,
+  class: className,
+} = Astro.props;
+const isFeaturedLayout = layout === 'featured';
+const eager = eagerProp || featuredProp;
+const heroImage = isFeaturedLayout || featuredProp || eager;
+const isFeatured = isFeaturedLayout;
+const imageWidths = heroImage ? BLOG_HERO_IMAGE_WIDTHS : CARD_IMAGE_WIDTHS;
+const imageSizes = heroImage ? BLOG_FEATURED_IMAGE_SIZES : CARD_IMAGE_SIZES;
 const href = blogPostPath(post.slug);
 const timestamp = getBlogPostTimestamp(post.date);
 const readMinutes = getBlogReadMinutes(post.readTime);
@@ -58,11 +77,11 @@ const tagIcon: IconName = blogTagIcons[post.tag] ?? 'tag';
   >
     <ResponsiveImage
       src={post.image}
-      alt={`${post.title} — Fortnite cheat gameplay screenshot`}
-      width={isFeatured ? 960 : 640}
-      height={isFeatured ? 540 : 360}
-      widths={isFeatured ? undefined : CARD_IMAGE_WIDTHS}
-      sizes={isFeatured ? '(min-width: 1024px) 560px, 100vw' : CARD_IMAGE_SIZES}
+      alt={`${post.title} — Enlisted hack gameplay screenshot`}
+      width={heroImage ? 960 : 640}
+      height={heroImage ? 540 : 360}
+      widths={imageWidths}
+      sizes={imageSizes}
       loading={eager ? 'eager' : 'lazy'}
       fetchPriority={eager ? 'high' : undefined}
       class:list={[

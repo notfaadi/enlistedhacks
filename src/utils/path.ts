@@ -12,7 +12,7 @@ export function withTrailingSlash(path: string): string {
 
 /** Former /cheats/* URLs → current routes (301 targets match astro.config + scripts/redirects.mjs). */
 export const LEGACY_PATH_MAP: Record<string, string> = {
-  '/cheats': PRODUCT_BASE,
+  '/hacks': PRODUCT_BASE,
   '/cheats/': PRODUCT_BASE,
   '/cheats/lite': PRODUCT_BASE,
   '/cheats/lite/': PRODUCT_BASE,
@@ -20,8 +20,8 @@ export const LEGACY_PATH_MAP: Record<string, string> = {
   '/cheats/pro/': PRODUCT_BASE,
   '/cheats/elite': `${PRODUCT_BASE}elite/`,
   '/cheats/elite/': `${PRODUCT_BASE}elite/`,
-  '/cheats/compare': '/blog/fortnite-lite-vs-pro/',
-  '/cheats/compare/': '/blog/fortnite-lite-vs-pro/',
+  '/cheats/compare': '/blog/enlisted-lite-vs-pro/',
+  '/cheats/compare/': '/blog/enlisted-lite-vs-pro/',
   '/contact': '/support/',
   '/contact/': '/support/',
 };
@@ -59,7 +59,7 @@ export function blogPostPath(slug: string): string {
   return `/blog/${slug}/`;
 }
 
-/** @deprecated Use productPath — cheat tier pages live under products. */
+/** @deprecated Use productPath — hack tier pages live under products. */
 export function cheatPath(slug: string): string {
   return productPath(slug);
 }

@@ -11,6 +11,13 @@ export const THUMB_IMAGE_WIDTHS = [320, 400] as const;
 /** Product / blog main images — prefer 960 as default src for clarity. */
 export const DEFAULT_IMAGE_WIDTHS = [640, 960] as const;
 
+/** Blog index featured card + article hero (wide display, sharp on retina). */
+export const BLOG_HERO_IMAGE_WIDTHS = [640, 960] as const;
+export const BLOG_FEATURED_IMAGE_SIZES =
+  '(min-width: 1280px) 620px, (min-width: 1024px) 52vw, (min-width: 768px) 90vw, 100vw';
+export const BLOG_ARTICLE_HERO_SIZES =
+  '(min-width: 1280px) 920px, (min-width: 768px) 720px, 100vw';
+
 export function stripRasterExt(src: string): string {
   return src.replace(RASTER_EXT, '');
 }

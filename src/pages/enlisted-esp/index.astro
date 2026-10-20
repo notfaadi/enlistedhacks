@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SeoContentShell from '../../components/SeoContentShell.astro';
+import { Button } from '@/components/starwind/button';
+import { SEO_CHECKOUT_URL } from '../../data/seo/constants';
+---
+
+<BaseLayout seoRoute="/enlisted-esp/">
+  <SeoContentShell
+    title="Enlisted ESP"
+    lead="Player boxes, skeleton overlay, health bars, and distance readouts for squad battles on Windows PC."
+  >
+    <p>
+      Enlisted Hacks ESP is tuned for Enlisted raid flow — spotting enemy soldiers, AI, and loot without
+      cluttering your screen. Toggle categories and distance filters per match.
+    </p>
+    <p class="mt-6">
+      <Button as="a" href={SEO_CHECKOUT_URL} variant="primary">Get ESP in one license</Button>
+    </p>
+  </SeoContentShell>
+</BaseLayout>

@@ -3,10 +3,6 @@ Allow: /
 
 Disallow: /go/
 
-Sitemap: https://fortnite-cheats.com/sitemap.xml
-Sitemap: https://fortnite-cheats.com/sitemap-pages.xml
-Sitemap: https://fortnite-cheats.com/sitemap-products.xml
-Sitemap: https://fortnite-cheats.com/sitemap-blog.xml
-Sitemap: https://fortnite-cheats.com/sitemap-forum.xml
+Sitemap: https://enlistedhacks.net/sitemap.xml
 
-# RSS: https://fortnite-cheats.com/rss.xml
+# RSS: https://enlistedhacks.net/rss.xml

@@ -4,17 +4,19 @@ import sitemap from '@astrojs/sitemap';
 import { sitemapSerialize } from './src/config/sitemap.ts';
 
 export default defineConfig({
-  site: 'https://fortnite-cheats.com',
+  site: 'https://enlistedhacks.net',
   trailingSlash: 'always',
   redirects: {
-    '/cheats/': '/products/fortnite-cheats/',
-    '/cheats/lite/': '/products/fortnite-cheats/',
-    '/cheats/pro/': '/products/fortnite-cheats/',
-    '/cheats/elite/': '/products/fortnite-cheats/elite/',
-    '/cheats/compare/': '/blog/fortnite-lite-vs-pro/',
-    '/products/dota-2-cheats/': '/products/fortnite-cheats/',
-    '/products/dota-2-cheats/elite/': '/products/fortnite-cheats/elite/',
-    '/products/dota-2-cheats/utilities/': '/products/fortnite-cheats/utilities/',
+    '/privacy/': '/privacy-policy/',
+    '/products/enlisted-hacks/': '/enlisted-hacks/',
+    '/cheats/': '/products/enlisted-hacks/',
+    '/cheats/lite/': '/products/enlisted-hacks/',
+    '/cheats/pro/': '/products/enlisted-hacks/',
+    '/cheats/elite/': '/products/enlisted-hacks/elite/',
+    '/cheats/compare/': '/blog/enlisted-lite-vs-pro/',
+    '/products/dota-2-cheats/': '/products/enlisted-hacks/',
+    '/products/dota-2-cheats/elite/': '/products/enlisted-hacks/elite/',
+    '/products/dota-2-cheats/utilities/': '/products/enlisted-hacks/utilities/',
     '/contact/': '/support/',
   },
   compressHTML: true,

@@ -1,0 +1,87 @@
+---
+import type { PageMeta } from '../data/seo';
+import {
+  SEO_AUTHOR,
+  SEO_OG_IMAGE_HEIGHT,
+  SEO_OG_IMAGE_TYPE,
+  SEO_OG_IMAGE_WIDTH,
+  SEO_ROBOTS,
+  SEO_SITE_NAME,
+  SEO_THEME_COLOR,
+} from '../data/seo';
+import { SEO_SITE_ORIGIN } from '../data/seo/constants';
+import JsonLd from './JsonLd.astro';
+
+export interface BaseHeadProps {
+  meta: PageMeta;
+  canonical: string;
+  locale?: string;
+  dir?: 'ltr' | 'rtl';
+  alternates?: { hreflang: string; href: string }[];
+  jsonLdGraph?: Record<string, unknown>[];
+  ogType?: 'website' | 'article';
+  noindex?: boolean;
+}
+
+const {
+  meta,
+  canonical,
+  locale = 'en',
+  dir = 'ltr',
+  alternates = [],
+  jsonLdGraph = [],
+  ogType = 'website',
+  noindex = false,
+} = Astro.props as BaseHeadProps;
+
+const robots = noindex ? 'noindex, nofollow' : SEO_ROBOTS;
+const ogImageUrl = meta.ogImage.startsWith('http')
+  ? meta.ogImage
+  : `${SEO_SITE_ORIGIN}${meta.ogImage.startsWith('/') ? meta.ogImage : `/${meta.ogImage}`}`;
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{meta.title}</title>
+<meta name="description" content={meta.description} />
+<meta name="keywords" content={meta.keywords} />
+<meta name="author" content={SEO_AUTHOR} />
+<meta name="robots" content={robots} />
+<meta name="googlebot" content={robots} />
+<meta name="theme-color" content={SEO_THEME_COLOR} />
+<link rel="canonical" href={canonical} />
+{
+  alternates.map((alt) => (
+    <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
+  ))
+}
+<link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+<link rel="manifest" href="/site.webmanifest" />
+<link rel="icon" href="/favicon.ico" sizes="48x48" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+<meta property="og:title" content={meta.title} />
+<meta property="og:description" content={meta.description} />
+<meta property="og:image" content={ogImageUrl} />
+<meta property="og:image:secure_url" content={ogImageUrl} />
+<meta property="og:image:alt" content={meta.ogImageAlt} />
+<meta property="og:image:width" content={String(SEO_OG_IMAGE_WIDTH)} />
+<meta property="og:image:height" content={String(SEO_OG_IMAGE_HEIGHT)} />
+<meta property="og:image:type" content={SEO_OG_IMAGE_TYPE} />
+<meta property="og:url" content={canonical} />
+<meta property="og:type" content={ogType} />
+<meta property="og:site_name" content={SEO_SITE_NAME} />
+<meta property="og:locale" content="en_US" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={meta.title} />
+<meta name="twitter:description" content={meta.description} />
+<meta name="twitter:image" content={ogImageUrl} />
+<meta name="twitter:image:alt" content={meta.ogImageAlt} />
+
+{jsonLdGraph.length > 0 && <JsonLd data={jsonLdGraph} />}
+<slot />

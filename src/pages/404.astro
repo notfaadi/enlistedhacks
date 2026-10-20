@@ -4,20 +4,22 @@ import { t } from '../i18n';
 import Icon from '../components/icons/Icon.astro';
 import { Button } from '@/components/starwind/button';
 import { ROUTES } from '../utils/path';
+import { SITE_URL } from '../config/site';
+import { getPageMeta, mergePageMeta } from '../data/seo';
 
+const pageMeta = mergePageMeta(getPageMeta('/'), {
+  title: `Page not found | ${t.site.name}`,
+  description: 'The page you requested could not be found on enlistedhacks.net.',
+});
 ---
 
-<BaseLayout
-  title={`Page not found | ${t.site.name}`}
-  description="The page you requested could not be found on fortnite-cheats.com."
-  noindex={true}
->
+<BaseLayout pageMeta={pageMeta} skipHreflang noindex canonicalOverride={`${SITE_URL}/404/`}>
   <section class="py-16 md:py-24">
     <div class="mx-auto max-w-lg px-5 text-center">
       <p class="text-sm font-semibold uppercase tracking-wider text-primary">404</p>
       <h1 class="mt-3 text-3xl font-bold uppercase md:text-4xl">Page not found</h1>
       <p class="mt-4 text-muted-foreground">
-        That URL does not exist or may have moved. Head back to the homepage or browse cheat tiers and products.
+        That URL does not exist or may have moved. Head back to the homepage or browse hack tiers and products.
       </p>
       <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
         <Button as="a" href={ROUTES.home} variant="primary">
@@ -25,7 +27,7 @@ import { ROUTES } from '../utils/path';
           <Icon name="arrowRight" size={17} />
         </Button>
         <Button as="a" href={ROUTES.products} variant="outline">View products</Button>
-        <Button as="a" href={ROUTES.productsElite} variant="outline">View Elite cheats</Button>
+        <Button as="a" href={ROUTES.productsElite} variant="outline">View Elite hacks</Button>
       </div>
     </div>
   </section>

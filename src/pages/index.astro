@@ -5,22 +5,23 @@ import FeaturesSection from '../components/FeaturesSection.astro';
 import WhySetupSection from '../components/WhySetupSection.astro';
 import ProductsSection from '../components/ProductsSection.astro';
 import ContentSections from '../components/ContentSections.astro';
-import { t } from '../i18n';
-import { resolvePageSeo } from '../config/seo';
-import { faqPageSchema, organizationSchema, websiteSchema } from '../utils/schema';
-import { getLandingFaqs } from '../data/faq';
 import { webpSrc } from '../utils/responsiveImage';
 
-const seo = resolvePageSeo('/');
-const homeFaqs = getLandingFaqs();
-const heroLcpImage = webpSrc('/images/gameplay/fortnite-esp-wallhack.png', 512);
+const heroLcpImage = webpSrc('/images/gameplay/enlisted-esp-wallhack.png', 512);
 ---
 
-<BaseLayout
-  title={seo.title}
-  description={seo.description}
-  jsonLd={[websiteSchema(), organizationSchema(), faqPageSchema(homeFaqs.map((f, i) => ({ num: String(i + 1).padStart(2, '0'), q: f.q, a: f.a.replace(/<[^>]+>/g, '') })))]}
->
+<BaseLayout homePage seoRoute="/">
+  <link
+    slot="head"
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  />
+  <link slot="head" rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    slot="head"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rajdhani:wght@600;700&display=swap"
+    rel="stylesheet"
+  />
   <link
     slot="head"
     rel="preload"

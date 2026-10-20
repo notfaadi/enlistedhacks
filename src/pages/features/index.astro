@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FeaturesSection from '../../components/FeaturesSection.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+---
+
+<BaseLayout seoRoute="/features/">
+  <div class="mx-auto max-w-6xl px-5 pt-8 md:pt-10">
+    <Breadcrumbs
+      items={[
+        { name: 'Home', path: '/' },
+        { name: 'Features', path: '/features/' },
+      ]}
+    />
+  </div>
+  <FeaturesSection />
+</BaseLayout>

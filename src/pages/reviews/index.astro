@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { SEO_REVIEW_ITEM_LIST } from '../../data/seo/lists';
+---
+
+<BaseLayout seoRoute="/reviews/">
+  <section class="py-8 md:py-12">
+    <div class="mx-auto max-w-6xl px-5">
+      <Breadcrumbs
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Reviews', path: '/reviews/' },
+        ]}
+      />
+      <header class="mt-6 max-w-3xl space-y-4">
+        <h1 class="text-3xl font-bold uppercase md:text-4xl">Buyer feedback</h1>
+        <p class="text-lg text-muted-foreground">
+          Real notes from license holders about ESP, aimbot, vehicles, delivery, and patch-day status checks.
+        </p>
+      </header>
+      <ul class="mt-10 grid gap-4 sm:grid-cols-2">
+        {SEO_REVIEW_ITEM_LIST.map((review) => (
+          <li class="rounded-xl border border-border bg-card p-5 text-sm leading-relaxed text-muted-foreground">
+            “{review.name}”
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

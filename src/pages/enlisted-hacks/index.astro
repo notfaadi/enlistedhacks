@@ -1,0 +1,60 @@
+---
+import '../../styles/product-cheat-page.css';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { t } from '../../i18n';
+import { productHub, productPages } from '../../data/products';
+import { cheatTierIcons, productCategoryIcons } from '../../data/sectionIcons';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CatalogCard from '../../components/CatalogCard.astro';
+import { productPath } from '../../utils/path';
+
+const breadcrumbs = [
+  { name: 'Home', path: '/' },
+  { name: 'Enlisted Hacks', path: '/enlisted-hacks/' },
+];
+
+function cardIcon(product: (typeof productPages)[number]) {
+  if (product.kind === 'tier') {
+    return cheatTierIcons[product.name] ?? 'crosshair';
+  }
+  return productCategoryIcons[product.category ?? ''] ?? 'package';
+}
+
+function cardLabel(product: (typeof productPages)[number]) {
+  if (product.kind === 'tier') {
+    return product.tier ?? product.name;
+  }
+  return product.category ?? 'Utility';
+}
+---
+
+<BaseLayout seoRoute="/enlisted-hacks/">
+  <section class="py-8 md:py-12">
+    <div class="mx-auto max-w-6xl px-5">
+      <Breadcrumbs items={breadcrumbs} />
+
+      <div class="mt-6 max-w-3xl space-y-3">
+        <h1 class="text-3xl font-bold uppercase md:text-4xl">{t.products.title}</h1>
+        <p class="text-lg text-muted-foreground">{t.products.subtitle}</p>
+      </div>
+
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {productPages.map((product) => (
+          <CatalogCard
+            label={cardLabel(product)}
+            title={product.title}
+            href={productPath(product.slug)}
+            buyUrl={product.buyUrl}
+            features={product.features}
+            more={product.more}
+            icon={cardIcon(product)}
+            badge={product.badge}
+            variant={product.variant}
+            buyLabel="Buy now"
+            viewLabel="View details"
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

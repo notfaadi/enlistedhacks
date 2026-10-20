@@ -7,8 +7,8 @@ import { Badge } from '@/components/starwind/badge';
 
 const s = t.features;
 
-function isScriptsHero(title: string) {
-  return title === 'Scripts';
+function isFeatureHero(title: string) {
+  return title === 'Cloud DMA';
 }
 ---
 
@@ -21,17 +21,17 @@ function isScriptsHero(title: string) {
     >
       {
         s.items.map((item) => {
-          const aimbotHero = isScriptsHero(item.title);
+          const featureHero = isFeatureHero(item.title);
           return (
             <article
               class:list={[
                 'group flex h-full min-h-0 flex-col overflow-hidden rounded-2xl border border-border bg-card text-left shadow-sm transition-colors hover:border-primary/35',
                 item.bento ?? 'sm:col-span-2 lg:col-span-4',
-                aimbotHero && 'features-bento-card--scripts',
+                featureHero && 'features-bento-card--scripts',
               ]}
             >
               {
-                aimbotHero ? (
+                featureHero ? (
                   <>
                     <header class="card-title-band px-5 py-4 sm:px-6 sm:py-5">
                       <div class="flex items-start gap-3">

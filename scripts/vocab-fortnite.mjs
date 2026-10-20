@@ -1,6 +1,6 @@
 /**
- * Second-pass vocabulary cleanup: Dota/Steam/VAC leftovers → Fortnite.
- * Run: node scripts/vocab-fortnite.mjs
+ * Second-pass vocabulary cleanup: Dota/Steam/VAC leftovers → Enlisted.
+ * Run: node scripts/vocab-enlisted.mjs
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -20,7 +20,7 @@ const TEXT_EXTS = new Set([
   '.webmanifest',
 ]);
 const SKIP_DIRS = new Set(['node_modules', '.git', 'dist', '.seo-baseline']);
-const SKIP_FILES = new Set(['rebrand-fortnite.mjs', 'vocab-fortnite.mjs']);
+const SKIP_FILES = new Set(['rebrand-enlisted.mjs', 'vocab-enlisted.mjs']);
 
 const REPLACEMENTS = [
   ['via Steam on Windows', 'via Epic Games Launcher on Windows'],
@@ -32,11 +32,11 @@ const REPLACEMENTS = [
   ['Steam platform', 'Epic Games platform'],
   ['Steam overlay', 'Epic overlay'],
   ['Steam restrictions', 'Epic account restrictions'],
-  ['Steam Fortnite', 'Fortnite on Epic'],
+  ['Steam Enlisted', 'Enlisted on Epic'],
   ['through Steam', 'through Epic Games'],
   ['exiting Steam', 'exiting the Epic Games Launcher'],
-  ['Current Fortnite client via Steam', 'Current Fortnite client via Epic Games Launcher'],
-  ['right-click Fortnite → Properties', 'open Fortnite settings in the Epic Games Launcher'],
+  ['Current Enlisted client via Steam', 'Current Enlisted client via Epic Games Launcher'],
+  ['right-click Enlisted → Properties', 'open Enlisted settings in the Epic Games Launcher'],
   ['reqSteam', 'reqEpic'],
   ['compatSteam', 'compatEpic'],
   [' Steam ', ' Epic Games '],
@@ -200,7 +200,7 @@ const REPLACEMENTS = [
   ['Fog of war', 'Storm circle'],
   ['fog of war', 'storm circle'],
 
-  ['Fortnite Scripts, Map Hack & ESP', 'Fortnite Aimbot, ESP & Wallhack'],
+  ['Enlisted Scripts, Map Hack & ESP', 'Enlisted Aimbot, ESP & Wallhack'],
   ['humanized scripts', 'humanized aimbot'],
   ['script automation', 'aimbot automation'],
   ['script delays', 'aimbot smoothness'],
@@ -211,7 +211,7 @@ const REPLACEMENTS = [
   ['Scripts ', 'Aimbot '],
   [' scripts.', ' aimbot.'],
 
-  ['npc_fortnite_hero_invoker', 'training_bot'],
+  ['npc_enlisted_hero_invoker', 'training_bot'],
   ['-createhero', '-spawnbot'],
   ['item_orchid', 'item_shield'],
   ['Orchid Malevolence', 'Shield Potion'],

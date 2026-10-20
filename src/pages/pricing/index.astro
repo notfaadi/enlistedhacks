@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { externalCheckoutLinkAttrs } from '../../config/checkout';
+import { SEO_CHECKOUT_URL } from '../../data/seo/constants';
+
+const checkoutLink = externalCheckoutLinkAttrs(SEO_CHECKOUT_URL);
+import { Button } from '@/components/starwind/button';
+---
+
+<BaseLayout seoRoute="/pricing/">
+  <section class="py-8 md:py-12">
+    <div class="mx-auto max-w-6xl px-5">
+      <Breadcrumbs
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Store', path: '/pricing/' },
+        ]}
+      />
+      <header class="mt-6 max-w-3xl space-y-4">
+        <h1 class="text-3xl font-bold uppercase md:text-4xl">Enlisted store</h1>
+        <p class="text-lg text-muted-foreground">
+          Same ESP, aimbot, skeleton, health, vehicles, recoil control, and streamproof mode on every plan.
+          Instant digital delivery after checkout.
+        </p>
+      </header>
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        <article class="rounded-2xl border border-border bg-card p-6">
+          <h2 class="text-xl font-bold">Monthly</h2>
+          <p class="mt-2 text-3xl font-bold text-primary">$35</p>
+          <p class="mt-1 text-sm text-muted-foreground">30 days · full feature stack</p>
+          <Button as="a" href={SEO_CHECKOUT_URL} class="mt-6 w-full" variant="primary" {...checkoutLink}>
+            Buy monthly
+          </Button>
+        </article>
+        <article class="rounded-2xl border border-primary/40 bg-card p-6">
+          <h2 class="text-xl font-bold">Lifetime</h2>
+          <p class="mt-2 text-3xl font-bold text-primary">$150</p>
+          <p class="mt-1 text-sm text-muted-foreground">One-time · full feature stack</p>
+          <Button as="a" href={SEO_CHECKOUT_URL} class="mt-6 w-full" variant="primary" {...checkoutLink}>
+            Buy lifetime
+          </Button>
+        </article>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

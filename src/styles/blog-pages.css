@@ -119,6 +119,13 @@
   }
 }
 
+.blog-card__media img,
+.blog-article__hero img {
+  image-rendering: auto;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
 /* Blog index filters */
 .blog-filter {
   transition:

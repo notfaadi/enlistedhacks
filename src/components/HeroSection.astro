@@ -58,13 +58,14 @@ const heroMarqueePills = [
           </Button>
           <Button
             as="a"
-            href={t.site.discord}
+            href={ROUTES.products}
+            data-scroll-target="products"
             variant="secondary"
             size="lg"
             class="rounded-xl"
           >
-            <Icon name="messageCircle" size={18} />
-            {h.ctaDiscord}
+            <Icon name="navProducts" size={18} />
+            {h.ctaViewProducts}
           </Button>
         </div>
       </div>

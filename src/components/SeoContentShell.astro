@@ -1,0 +1,18 @@
+---
+interface Props {
+  title: string;
+  lead?: string;
+}
+
+const { title, lead } = Astro.props;
+---
+
+<section class="section-shell py-16 md:py-24">
+  <header class="section-header mb-10 max-w-3xl">
+    <h1 class="section-header__title">{title}</h1>
+    {lead && <p class="section-header__subtitle mt-4">{lead}</p>}
+  </header>
+  <div class="prose prose-neutral dark:prose-invert max-w-3xl text-muted-foreground">
+    <slot />
+  </div>
+</section>

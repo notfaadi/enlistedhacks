@@ -4,14 +4,12 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { t } from '../../i18n';
 import { getAllBlogSlugs, getBlogPost, getRelatedBlogPosts } from '../../data/blog';
 import { cheatMetaDescription, pageTitle } from '../../config/seo';
-import {
-  articleSchema,
-  breadcrumbSchema,
-  parseBlogDate,
-} from '../../utils/schema';
+import { getPageMeta, mergePageMeta } from '../../data/seo';
+import { articleSchema, parseBlogDate } from '../../utils/schema';
 import { checkoutPath, resolveCheckoutHref } from '../../config/checkout';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import ResponsiveImage from '../../components/ResponsiveImage.astro';
+import { BLOG_ARTICLE_HERO_SIZES, BLOG_HERO_IMAGE_WIDTHS } from '../../utils/responsiveImage';
 import BlogSidebar from '../../components/BlogSidebar.astro';
 import BlogPostTopBar from '../../components/BlogPostTopBar.astro';
 import { getBlogFaqs } from '../../data/faq';
@@ -50,10 +48,10 @@ function linkify(text: string): string {
       const normalized = normalizeInternalPath(href);
       return `<a href="${normalized}">${label}</a>`;
     })
-    .replace(/(https:\/\/fortnitecheats\.com[^\s.,;)]*)/g, (_match, url: string) => {
-      const path = url.replace(/^https:\/\/fortnitecheats\.com/, '');
+    .replace(/(https:\/\/enlistedhackshacks\.com[^\s.,;)]*)/g, (_match, url: string) => {
+      const path = url.replace(/^https:\/\/enlistedhackshacks\.com/, '');
       const normalized = normalizeInternalPath(path);
-      const href = normalized.startsWith('http') ? normalized : `https://fortnite-cheats.com${normalized}`;
+      const href = normalized.startsWith('http') ? normalized : `https://enlistedhack.net${normalized}`;
       return `<a href="${href}">${url}</a>`;
     });
 }
@@ -65,26 +63,30 @@ function slugify(text: string): string {
     .replace(/^-|-$/g, '');
 }
 const published = parseBlogDate(post.date);
+const pageMeta = mergePageMeta(getPageMeta('/blog/'), {
+  title: pageTitle(post.title),
+  description: cheatMetaDescription(post.desc),
+  ogImage: post.image,
+  ogImageAlt: post.title,
+  breadcrumbs,
+  includeBlogCollection: false,
+});
+const articleLd = articleSchema({
+  name: post.title,
+  description: cheatMetaDescription(post.desc),
+  url: postPath,
+  image: post.image,
+  datePublished: published,
+});
 ---
 
 <BaseLayout
-  title={pageTitle(post.title)}
-  description={cheatMetaDescription(post.desc)}
+  pageMeta={pageMeta}
+  extraJsonLd={[articleLd]}
   ogType="article"
-  ogImage={post.image}
-  ogImageAlt={post.title}
   articlePublishedTime={published}
   articleModifiedTime={published}
-  jsonLd={[
-    articleSchema({
-      name: post.title,
-      description: cheatMetaDescription(post.desc),
-      url: postPath,
-      image: post.image,
-      datePublished: published,
-    }),
-    breadcrumbSchema(breadcrumbs),
-  ]}
+  skipHreflang
 >
   <article class="py-8 md:py-12">
     <div class="mx-auto max-w-6xl px-5">
@@ -99,12 +101,13 @@ const published = parseBlogDate(post.date);
           <figure class="blog-article__hero">
             <ResponsiveImage
               src={post.image}
-              alt={`${post.title} — Fortnite cheat gameplay screenshot`}
+              alt={`${post.title} — Enlisted hack gameplay screenshot`}
               width={960}
               height={540}
               loading="eager"
               fetchPriority="high"
-              sizes="(min-width: 768px) 720px, 100vw"
+              widths={BLOG_HERO_IMAGE_WIDTHS}
+              sizes={BLOG_ARTICLE_HERO_SIZES}
               class="w-full object-cover"
             />
           </figure>
@@ -179,8 +182,8 @@ const published = parseBlogDate(post.date);
           </Prose>
 
           <nav class="blog-article__actions" aria-label="Continue reading">
-            <Button as="a" href={checkoutPath('fortnite')} variant="primary" aria-label={t.ui.checkoutAria}>
-              Buy Fortnite Cheats
+            <Button as="a" href={checkoutPath('enlisted')} variant="primary" aria-label={t.ui.checkoutAria}>
+              Buy Enlisted Hacks
               <Icon name="arrowRight" size={17} />
             </Button>
             <Button as="a" href={ROUTES.products} variant="outline">

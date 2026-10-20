@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SeoContentShell from '../../components/SeoContentShell.astro';
+import { Button } from '@/components/starwind/button';
+import { SEO_CHECKOUT_URL } from '../../data/seo/constants';
+---
+
+<BaseLayout seoRoute="/enlisted-vehicles/">
+  <SeoContentShell
+    title="Enlisted vehicles"
+    lead="Tank, aircraft, and armored vehicle ESP with distance readouts and 2D radar cues."
+  >
+    <p>
+      Vehicle detection helps you avoid surprise armor pushes and air strikes. Included with every Enlisted Hacks
+      license alongside player ESP and aimbot tools.
+    </p>
+    <p class="mt-6">
+      <Button as="a" href={SEO_CHECKOUT_URL} variant="primary">Unlock vehicle ESP</Button>
+    </p>
+  </SeoContentShell>
+</BaseLayout>

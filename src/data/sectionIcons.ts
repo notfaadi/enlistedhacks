@@ -10,6 +10,7 @@ export const featureIcons: Record<string, IconName> = {
   'Stream Proof': 'streamProof',
   'Radar Hack': 'compareZoomHack',
   'Cloud Config & Updates': 'compareCloudBackup',
+  'Cloud DMA': 'dmaHardware',
 };
 
 export const whyUsIcons: IconName[] = ['whyShield', 'whyUsers', 'whyMonitor', 'whyHeadphones'];
@@ -61,6 +62,7 @@ export const heroStatusPills: { icon: IconName; label: string }[] = [
   { icon: 'boneSelect', label: 'Bone Select' },
   { icon: 'liveStatus', label: 'Live Status' },
   { icon: 'autoUpdates', label: 'Auto Updates' },
+  { icon: 'dmaHardware', label: 'Cloud DMA · Aimbot ESP' },
 ];
 
 export const heroStatIcons: IconName[] = [
@@ -122,4 +124,5 @@ export const compatibilityIcons: IconName[] = [
   'compatWifi',
   'compatDiscord',
   'compatShield',
+  'dmaHardware',
 ];

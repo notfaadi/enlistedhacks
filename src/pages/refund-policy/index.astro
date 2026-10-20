@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LegalPage from '../../components/LegalPage.astro';
+---
+
+<BaseLayout seoRoute="/refund-policy/">
+  <LegalPage
+    title="Refund policy"
+    description="Digital delivery terms and eligibility for Enlisted Hacks licenses with ESP, soft aim, and radar."
+    breadcrumbLabel="Refund Policy"
+    sections={[
+      {
+        heading: 'Digital delivery',
+        paragraphs: [
+          'Enlisted Hacks licenses are delivered digitally after checkout is confirmed. Timing can vary by payment method and order review.',
+          'Keep your order confirmation email — support@enlistedhacks.net may ask for it when troubleshooting delivery.',
+        ],
+      },
+      {
+        heading: 'Eligibility',
+        paragraphs: [
+          'All sales are final once checkout completes. We do not refund change-of-mind purchases, account bans, anti-cheat penalties, or issues caused by ignoring setup guides or running while the status banner shows offline.',
+          'We may, at our discretion, offer a fix, replacement access, or partial/full refund when we confirm a fault on our side.',
+        ],
+      },
+      {
+        heading: 'Contact',
+        paragraphs: [
+          'Email support@enlistedhacks.net with your order ID and a clear description of the issue. See Support for response expectations.',
+        ],
+      },
+    ]}
+  />
+</BaseLayout>

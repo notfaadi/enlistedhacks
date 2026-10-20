@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SeoContentShell from '../../components/SeoContentShell.astro';
+import { Button } from '@/components/starwind/button';
+import { SEO_CHECKOUT_URL } from '../../data/seo/constants';
+---
+
+<BaseLayout seoRoute="/enlisted-aimbot/">
+  <SeoContentShell
+    title="Enlisted aimbot"
+    lead="FOV, smoothness, bone priority, and per-weapon recoil compensation on Windows PC."
+  >
+    <p>
+      Soft aim settings help you stay natural in firefights while keeping targets manageable. Pair with ESP
+      and radar cues from the same Enlisted Hacks license.
+    </p>
+    <p class="mt-6">
+      <Button as="a" href={SEO_CHECKOUT_URL} variant="primary">Buy aimbot + full stack</Button>
+    </p>
+  </SeoContentShell>
+</BaseLayout>

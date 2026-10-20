@@ -2,30 +2,24 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { t } from '../i18n';
 import { resolvePageSeo } from '../config/seo';
+import LegalPage from '../components/LegalPage.astro';
+import { getPageMeta, mergePageMeta } from '../data/seo';
 
 const seo = resolvePageSeo('/about/');
-import LegalPage from '../components/LegalPage.astro';
-import { breadcrumbSchema, organizationSchema, webPageSchema } from '../utils/schema';
-
 const content = t.legalPages.about;
+const pageMeta = mergePageMeta(getPageMeta('/'), {
+  title: seo.title,
+  description: seo.description,
+  breadcrumbs: [
+    { name: 'Home', path: '/' },
+    { name: 'About', path: '/about/' },
+  ],
+  includeProduct: false,
+  includeFaqPage: false,
+});
 ---
 
-<BaseLayout
-  title={seo.title}
-  description={seo.description}
-  jsonLd={[
-    organizationSchema(),
-    webPageSchema({
-      name: content.title,
-      description: content.description,
-      url: '/about/',
-    }),
-    breadcrumbSchema([
-      { name: 'Home', path: '/' },
-      { name: 'About', path: '/about/' },
-    ]),
-  ]}
->
+<BaseLayout pageMeta={pageMeta} skipHreflang>
   <LegalPage
     title={content.title}
     description={content.description}

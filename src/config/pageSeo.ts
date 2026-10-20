@@ -10,74 +10,79 @@ export interface PageSeoEntry {
 
 export const PAGE_SEO: Record<string, PageSeoEntry> = {
   '/': {
-    title: 'Buy Undetected Fortnite Cheats | Aimbot, ESP & Wallhack',
+    title: 'Buy Undetected Enlisted Hacks | Aimbot, ESP & Wallhack',
     description:
-      'Buy undetected Fortnite cheats for PC — aimbot, ESP, wallhack, radar, loot ESP and skin changer. Updated after every Easy Anti-Cheat patch.',
+      'Buy undetected Enlisted Hacks for PC — aimbot, ESP, wallhack, radar, loot radar and uniform changer. Updated after every BattlEye patch.',
   },
-  '/products/fortnite-cheats/': {
-    title: 'Buy Fortnite Cheats | Elite, HWID Spoofer & Skin Changer',
+  '/products/enlisted-hacks/': {
+    title: 'Buy Enlisted Hacks | Elite, HWID Spoofer & Uniform changer',
     description:
-      'Shop Fortnite cheats for PC: Elite aimbot & ESP wallhack, HWID spoofer, UGC recovery and Skin Changer. Instant delivery after checkout.',
+      'Shop Enlisted Hacks for PC: Elite aimbot & ESP wallhack, HWID spoofer, UGC recovery and Uniform changer. Instant delivery after checkout.',
   },
-  '/products/fortnite-cheats/elite/': {
-    title: 'Buy Fortnite Elite Cheats | Aimbot, ESP & Loot Assist',
+  '/products/enlisted-hacks/elite/': {
+    title: 'Buy Enlisted Elite Hacks | Aimbot, ESP & Loot Assist',
     description:
-      'Buy Fortnite Elite cheats with aimbot, ESP wallhack, loot assist, Auto Finish, Skin Changer and priority EAC patch updates.',
+      'Buy Enlisted Elite hacks with aimbot, ESP wallhack, loot assist, Auto Finish, Uniform changer and priority BattlEye patch updates.',
   },
-  '/products/fortnite-cheats/hwid-spoofer/': {
-    title: 'Buy Fortnite HWID Spoofer | Hardware Ban Bypass',
+  '/products/enlisted-hacks/cloud-dma/': {
+    title: 'Buy Enlisted Cloud DMA | Aimbot, ESP & Wallhack',
     description:
-      'Buy a Fortnite HWID spoofer for PC hardware bans — disk/MAC tools, compatibility scan and post-spoof checks before you launch cheats again.',
+      'Buy Enlisted Cloud DMA for Aimbot, ESP and Wallhack over hardware DMA—cloud firmware, profile sync and patch updates on supported PC setups.',
   },
-  '/products/fortnite-cheats/ugc/': {
-    title: 'Buy Fortnite UGC | EAC & Epic Ban Appeal Tools',
+  '/products/enlisted-hacks/hwid-spoofer/': {
+    title: 'Buy Enlisted HWID Spoofer | Hardware Ban Bypass',
     description:
-      'Buy Fortnite UGC (Unban & Governance Control) to organize Epic and EAC ban appeals, dispute workflows and case tracking.',
+      'Buy a Enlisted HWID spoofer for PC hardware bans — disk/MAC tools, compatibility scan and post-spoof checks before you launch hacks again.',
   },
-  '/products/fortnite-cheats/unlock-all/': {
-    title: 'Buy Fortnite Skin Changer | Unlock All Cosmetics',
+  '/products/enlisted-hacks/ugc/': {
+    title: 'Buy Enlisted UGC | BattlEye & Epic Ban Appeal Tools',
     description:
-      'Buy Fortnite Skin Changer / Unlock All — local outfit, wrap and pickaxe previews with your Fortnite cheats loadout.',
+      'Buy Enlisted UGC (Unban & Governance Control) to organize Epic and BattlEye ban appeals, dispute workflows and case tracking.',
   },
-  '/products/fortnite-cheats/utilities/': {
-    title: 'Buy Fortnite Cheat Utilities | HWID, UGC & Skin Changer',
+  '/products/enlisted-hacks/unlock-all/': {
+    title: 'Buy Enlisted Uniform changer | Unlock all uniforms Cosmetics',
     description:
-      'Buy Fortnite cheat utilities: HWID spoofer after hardware bans, UGC for Epic/EAC appeals, and local Skin Changer / Unlock All.',
+      'Buy Enlisted Uniform changer / Unlock all uniforms — local outfit, wrap and pickaxe previews with your Enlisted Hacks loadout.',
+  },
+  '/products/enlisted-hacks/utilities/': {
+    title: 'Buy Enlisted Hack Utilities | HWID, UGC & Uniform changer',
+    description:
+      'Buy Enlisted hack utilities: HWID spoofer after hardware bans, UGC for Epic/BattlEye appeals, and local Uniform changer / Unlock all uniforms.',
   },
   '/blog/': {
-    title: 'Fortnite Cheat Guides | Aimbot, ESP Wallhack & EAC',
+    title: 'Enlisted Hack Guides | Aimbot, ESP Wallhack & EAC',
     description:
-      'Read Fortnite cheat guides on aimbot setup, ESP wallhack, Lite vs Pro, Creative practice and Easy Anti-Cheat patch-day checks.',
+      'Read Enlisted hack guides on aimbot setup, ESP wallhack, Lite vs Pro, Custom battle practice and BattlEye patch-day checks.',
   },
   '/forum/': {
-    title: 'Fortnite Cheats Forum | Aimbot, ESP & Setup Help',
+    title: 'Enlisted Hacks Forum | Aimbot, ESP & Setup Help',
     description:
-      'Fortnite cheats forum for aimbot configs, ESP wallhack setup, EAC status and product questions before you buy.',
+      'Enlisted Hacks forum for aimbot configs, ESP wallhack setup, BattlEye status and product questions before you buy.',
   },
   '/faq/': {
-    title: 'Fortnite Cheats FAQ | Aimbot, ESP, Bans & Setup',
+    title: 'Enlisted Hacks FAQ | Aimbot, ESP, Bans & Setup',
     description:
-      'Fortnite cheats FAQ — tiers, aimbot, ESP wallhack, radar, HWID spoofer, Skin Changer, bans and loader setup before checkout.',
+      'Enlisted Hacks FAQ — tiers, aimbot, ESP wallhack, radar, HWID spoofer, Uniform changer, bans and loader setup before checkout.',
   },
   '/terms/': {
-    title: 'Terms for Fortnite Cheats | License & Refunds',
+    title: 'Terms for Enlisted Hacks | License & Refunds',
     description:
-      'Terms for buying Fortnite cheats on fortnite-cheats.com — license use, delivery, refunds and account risk.',
+      'Terms for buying Enlisted Hacks on enlistedhack.net — license use, delivery, refunds and account risk.',
   },
   '/privacy/': {
-    title: 'Privacy Policy | Fortnite Cheats Shop',
+    title: 'Privacy Policy | Enlisted Hacks Shop',
     description:
-      'How the Fortnite cheats shop at fortnite-cheats.com uses analytics, cookies and contact data.',
+      'How the Enlisted Hacks shop at enlistedhack.net uses analytics, cookies and contact data.',
   },
   '/about/': {
-    title: 'About Fortnite Cheats | Buy PC Aimbot & ESP',
+    title: 'About Enlisted Hacks | Buy PC Aimbot & ESP',
     description:
-      'About Fortnite Cheats — we sell PC Fortnite cheats (aimbot, ESP, wallhack), guides and utilities at fortnite-cheats.com.',
+      'About Enlisted Hacks — we sell PC Enlisted Hacks (aimbot, ESP, wallhack), guides and utilities at enlistedhack.net.',
   },
   '/support/': {
-    title: 'Fortnite Cheats Support | Loader, HWID & Checkout',
+    title: 'Enlisted Hacks Support | Loader, HWID & Checkout',
     description:
-      'Fortnite cheats support for loader setup, aimbot/ESP configs, HWID spoofing and checkout help — 24/7 Discord.',
+      'Enlisted Hacks support for loader setup, aimbot/ESP configs, HWID spoofing and checkout help — 24/7 Discord.',
   },
 };
 

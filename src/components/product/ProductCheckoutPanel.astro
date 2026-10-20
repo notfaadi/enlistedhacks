@@ -1,5 +1,6 @@
 ---
 import type { ProductPage } from '../../data/products';
+import { externalCheckoutLinkAttrs } from '../../config/checkout';
 import {
   checkoutUrlWithPlan,
   formatPlanPrice,
@@ -77,6 +78,7 @@ const isSinglePlan = plans.length === 1;
         size="lg"
         class="w-full rounded-xl"
         data-checkout-buy
+        {...externalCheckoutLinkAttrs(product.buyUrl)}
       >
         Buy now
         <Icon name="arrowRight" size={17} />

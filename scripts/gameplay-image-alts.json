@@ -1,85 +1,10 @@
 {
   "gameplay": [
     {
-      "file": "fortnite-esp-wallhack.png",
-      "alt": "Fortnite ESP wallhack cheat gameplay with player boxes distance tags and aimbot FOV",
+      "file": "enlisted-esp-wallhack.png",
+      "alt": "Enlisted ESP wallhack with player boxes, tracers, and squad overlay in urban combat",
       "srcIndex": 0
-    },
-    {
-      "file": "fortnite-aimbot-combat.png",
-      "alt": "Fortnite aimbot cheat gameplay with FOV circle and green skeleton ESP on enemy",
-      "srcIndex": 1
-    },
-    {
-      "file": "fortnite-player-esp.png",
-      "alt": "Fortnite player ESP wallhack showing skeletons boxes and distance meters",
-      "srcIndex": 2
-    },
-    {
-      "file": "fortnite-radar-hack.png",
-      "alt": "Fortnite radar and ESP overlay with enemy name tags health and range markers",
-      "srcIndex": 3
-    },
-    {
-      "file": "fortnite-auto-aim.png",
-      "alt": "Fortnite sniper aimbot cheat with green ESP box weapon label and FOV circle",
-      "srcIndex": 4
-    },
-    {
-      "file": "fortnite-loot-radar.png",
-      "alt": "Fortnite loot and chest ESP gameplay with enemy boxes and distance trackers",
-      "srcIndex": 5
-    },
-    {
-      "file": "fortnite-skin-changer.png",
-      "alt": "Fortnite cheat gameplay with chams skeleton ESP and aim lock on pier",
-      "srcIndex": 6
-    },
-    {
-      "file": "fortnite-thermal-esp.png",
-      "alt": "Fortnite thermal vision ESP showing skeleton wallhack HP and distance",
-      "srcIndex": 7
-    },
-    {
-      "file": "fortnite-build-fight-esp.png",
-      "alt": "Fortnite build fight ESP wallhack with names HP bars and FOV circle",
-      "srcIndex": 8
-    },
-    {
-      "file": "fortnite-arena-wallhack.png",
-      "alt": "Fortnite arena wallhack ESP with wireframe players and weapon tags",
-      "srcIndex": 9
-    },
-    {
-      "file": "fortnite-spawn-island-esp.png",
-      "alt": "Fortnite spawn island ESP with skeleton boxes and aimbot reticle",
-      "srcIndex": 10
-    },
-    {
-      "file": "fortnite-long-range-esp.png",
-      "alt": "Fortnite long range ESP wallhack with enemy names health and weapons",
-      "srcIndex": 11
-    },
-    {
-      "file": "fortnite-aimbot-lock.png",
-      "alt": "Fortnite aimbot lock with green skeleton ESP FOV circle and head priority",
-      "srcIndex": 12
-    },
-    {
-      "file": "fortnite-chams-esp.png",
-      "alt": "Fortnite chams and skeleton ESP cheat on wooden pier",
-      "srcIndex": 13
-    },
-    {
-      "file": "fortnite-squad-esp.png",
-      "alt": "Fortnite multi-player ESP wallhack with boxes skeletons and distances",
-      "srcIndex": 14
-    },
-    {
-      "file": "fortnite-combat-esp.png",
-      "alt": "Fortnite combat ESP and aimbot overlay in open field fight",
-      "srcIndex": 15
     }
   ],
-  "sourceCount": 16
+  "sourceCount": 1
 }
