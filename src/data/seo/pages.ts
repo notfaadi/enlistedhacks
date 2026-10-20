@@ -1,4 +1,5 @@
 import { GLOBAL_KEYWORDS } from './constants';
+import { HOMEPAGE_DOCUMENT_TITLE } from './homepageTitle';
 import type { SeoRouteKey } from './locales';
 
 export interface BreadcrumbItem {
@@ -25,7 +26,7 @@ const kw = (extra: string) => `${GLOBAL_KEYWORDS}, ${extra}`;
 export const PAGE_META: Record<SeoRouteKey, PageMeta> = {
   '/': {
     route: '/',
-    title: 'Buy Undetected Enlisted Hacks | Aimbot, ESP & Wallhack',
+    title: HOMEPAGE_DOCUMENT_TITLE,
     description:
       'Buy undetected Enlisted hacks for Windows PC — aimbot, ESP, wallhack, radar and Cloud DMA. Streamproof overlays, EAC updates, and instant delivery.',
     ogImage: '/images/enlisted-hacks-hero-1024w.webp',

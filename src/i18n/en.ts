@@ -8,7 +8,7 @@ export const en: Translations = {
   site: {
     name: 'Enlisted Hacks',
     domain: SITE_DOMAIN,
-    title: 'Buy Undetected Enlisted Hacks | Aimbot, ESP & Wallhack',
+    title: 'Undetected Enlisted Hacks | Aimbot, ESP & Wallhack',
     description:
       'Buy undetected Enlisted hacks for PC: aimbot, ESP, wallhack, radar, loot radar and uniform changer. Updated after BattlEye patches.',
     discord: DISCORD_URL,

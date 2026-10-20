@@ -3,6 +3,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
+import { en } from '../src/i18n/en';
+import { HOMEPAGE_DOCUMENT_TITLE } from '../src/data/seo/homepageTitle';
+import { PAGE_META } from '../src/data/seo/pages';
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dist = path.join(root, 'dist');
@@ -35,6 +38,16 @@ test('homepage hreflang is English-only (no phantom locale URLs)', () => {
   const count = (html.match(/hreflang/g) ?? []).length;
   assert.ok(count <= 6, `expected at most 6 hreflang attrs (en, en-US, x-default), got ${count}`);
   assert.ok(!html.includes('hreflang="es"'), 'Spanish hreflang should not ship without /es/ pages');
+});
+
+test('homepage document title matches hero h1 lines', () => {
+  assert.equal(PAGE_META['/'].title, HOMEPAGE_DOCUMENT_TITLE);
+  const indexPath = path.join(dist, 'index.html');
+  const html = fs.readFileSync(indexPath, 'utf8');
+  const title = html.match(/<title>([^<]+)/)?.[1]?.replace(/&amp;/g, '&');
+  assert.equal(title, HOMEPAGE_DOCUMENT_TITLE);
+  assert.ok(title?.includes(en.hero.titleLine1));
+  assert.ok(title?.includes(en.hero.titleLine2));
 });
 
 test('homepage has exactly one h1 and self-referencing hreflang', () => {
