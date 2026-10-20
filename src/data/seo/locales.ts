@@ -201,8 +201,10 @@ export function buildHreflangAlternates(
   canonicalUrl?: string,
 ): { hreflang: string; href: string }[] {
   const enUrl = canonicalUrl ?? `${origin}${EN_PATH_BY_ROUTE[route]}`;
+  // Self-referencing en + x-default (required when hreflang cluster is present).
   return [
     { hreflang: 'en', href: enUrl },
+    { hreflang: 'en-US', href: enUrl },
     { hreflang: 'x-default', href: enUrl },
   ];
 }

@@ -27,7 +27,7 @@ export const PAGE_META: Record<SeoRouteKey, PageMeta> = {
     route: '/',
     title: 'Buy Undetected Enlisted Hacks | Aimbot, ESP & Wallhack',
     description:
-      'Buy undetected Enlisted hacks for Windows PC — aimbot, ESP, wallhack, radar and Cloud DMA plans. Updated after Easy Anti-Cheat patches with instant delivery.',
+      'Buy undetected Enlisted hacks for Windows PC — aimbot, ESP, wallhack, radar and Cloud DMA. Streamproof overlays, EAC updates, and instant delivery.',
     ogImage: '/images/enlisted-hacks-hero-1024w.webp',
     ogImageAlt: 'Enlisted Hacks homepage hero — ESP and aimbot for Enlisted',
     keywords: kw('enlisted hacks official site, enlisted hacks pc, buy enlisted hacks'),

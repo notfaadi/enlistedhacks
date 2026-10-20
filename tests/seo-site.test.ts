@@ -33,7 +33,7 @@ test('homepage hreflang is English-only (no phantom locale URLs)', () => {
   assert.ok(fs.existsSync(indexPath), 'Run npm run build first');
   const html = fs.readFileSync(indexPath, 'utf8');
   const count = (html.match(/hreflang/g) ?? []).length;
-  assert.ok(count <= 4, `expected at most 4 hreflang attrs (en + x-default), got ${count}`);
+  assert.ok(count <= 6, `expected at most 6 hreflang attrs (en, en-US, x-default), got ${count}`);
   assert.ok(!html.includes('hreflang="es"'), 'Spanish hreflang should not ship without /es/ pages');
 });
 
@@ -47,6 +47,10 @@ test('homepage has exactly one h1 and self-referencing hreflang', () => {
   const hreflangEn = html.match(/<link rel="alternate" hreflang="en" href="([^"]+)"/)?.[1];
   assert.ok(canonical, 'canonical link required');
   assert.equal(hreflangEn, canonical, 'hreflang en must match canonical URL');
+  const hreflangEnUs = html.match(/<link rel="alternate" hreflang="en-US" href="([^"]+)"/)?.[1];
+  assert.equal(hreflangEnUs, canonical, 'hreflang en-US must match canonical URL');
+  const desc = html.match(/<meta name="description" content="([^"]+)"/)?.[1] ?? '';
+  assert.ok(desc.length >= 120 && desc.length <= 165, `homepage meta description length ${desc.length}`);
 });
 
 test('built HTML has no empty img alt on homepage', () => {

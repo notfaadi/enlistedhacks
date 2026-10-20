@@ -1,8 +1,18 @@
-# Static Astro site — do not auto-add @astrojs/cloudflare (keeps output in dist/).
+# Static Astro site — Worker handles www/http/legacy host 301s; assets from dist/.
 name = "enlisted-cheats-com"
+main = "worker.mjs"
 compatibility_date = "2025-10-11"
 
 [assets]
 directory = "./dist"
+binding = "ASSETS"
 not_found_handling = "404-page"
 html_handling = "auto-trailing-slash"
+
+[[routes]]
+pattern = "enlistedhacks.net"
+custom_domain = true
+
+[[routes]]
+pattern = "www.enlistedhacks.net"
+custom_domain = true
