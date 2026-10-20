@@ -22,6 +22,8 @@ interface Props {
   contentAlign?: 'left' | 'center';
   id?: string;
   class?: string;
+  /** Hide block title (e.g. /faq/ page supplies its own h1). */
+  hideHeader?: boolean;
 }
 
 const {
@@ -36,6 +38,7 @@ const {
   contentAlign = 'center',
   id: sectionId,
   class: className,
+  hideHeader = false,
 } = Astro.props;
 
 const topicLabels: Record<FaqTopic, string> = {
@@ -60,13 +63,17 @@ const filters = filterTopics ?? (['all', 'plans', 'esp', 'scripts', 'safety', 'p
 >
   <div class="mx-auto max-w-6xl px-5">
     <div class:list={[contentAlign === 'center' && 'mx-auto max-w-3xl', contentAlign === 'left' && 'product-detail__narrow max-w-3xl']}>
-    <SectionHeader
-      eyebrow={eyebrow}
-      title={title}
-      desc={subtitle}
-      titleId={titleId}
-      centered={centered}
-    />
+    {
+      !hideHeader && (
+        <SectionHeader
+          eyebrow={eyebrow}
+          title={title}
+          desc={subtitle}
+          titleId={titleId}
+          centered={centered}
+        />
+      )
+    }
 
     {
       showFilters && (

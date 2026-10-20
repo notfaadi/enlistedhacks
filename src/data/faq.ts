@@ -45,7 +45,7 @@ export const siteFaqs: SiteFaqItem[] = [
     topic: 'setup',
     icon: 'faqStatus',
     q: 'Where do I check if Enlisted Hacks are online?',
-    a: a('The live status banner is on enlistedhack.net and in the Discord #status. Always check after an Enlisted or BattlEye update.'),
+    a: a('The live status banner is on enlistedhacks.net and in the Discord #status. Always check after an Enlisted or BattlEye update.'),
   },
   {
     id: 'after-buy',
@@ -214,7 +214,7 @@ export const siteFaqs: SiteFaqItem[] = [
     topic: 'plans',
     icon: 'faqWhoPro',
     q: 'Who should buy Pro?',
-    a: `Ranked players who want Aimbot, Smooth Aim and Hotkey macros with ESP wallhack included. Pro is the most popular tier at enlistedhack.net.`,
+    a: `Ranked players who want Aimbot, Smooth Aim and Hotkey macros with ESP wallhack included. Pro is the most popular tier at enlistedhacks.net.`,
     scopes: ['pro'],
   },
   {
@@ -230,7 +230,7 @@ export const siteFaqs: SiteFaqItem[] = [
     topic: 'safety',
     icon: 'faqEacUpdate',
     q: 'What should I do after a BattlEye update?',
-    a: a('Check enlistedhack.net status and Discord #status. Do not launch until the banner shows online. Load conservative presets after any patch.'),
+    a: a('Check enlistedhacks.net status and Discord #status. Do not launch until the banner shows online. Load conservative presets after any patch.'),
   },
   {
     id: 'discord-help',
@@ -353,7 +353,7 @@ const blogTopicFaqs: Record<string, SiteFaqItem[]> = {
       topic: 'blog',
       icon: 'faqBlogGuideStart',
       q: 'Should I use console hack tools in ranked?',
-      a: a('No. custom lobby hack tools only work in custom games with hacks enabled. Ranked requires separate Enlisted Hacks from enlistedhack.net tiers.'),
+      a: a('No. custom lobby hack tools only work in custom games with hacks enabled. Ranked requires separate Enlisted Hacks from enlistedhacks.net tiers.'),
     },
     {
       id: 'blog-guide-tier',

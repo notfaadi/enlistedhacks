@@ -101,7 +101,7 @@ const defaultAcquisitionSteps: AcquisitionStep[] = [
   {
     num: '01',
     title: 'Review current status',
-    desc: 'Check the live banner on enlistedhack.net and Discord #status before purchase—especially after a Enlisted or BattlEye update.',
+    desc: 'Check the live banner on enlistedhacks.net and Discord #status before purchase—especially after a Enlisted or BattlEye update.',
   },
   {
     num: '02',
@@ -128,7 +128,7 @@ function acquisitionFor(productName: string): ProductAcquisition {
 }
 
 const sharedGoodToKnow =
-  'Enlisted and BattlEye receive frequent updates. Confirm module availability on the live status panel at enlistedhack.net before you purchase or launch. Overlay behavior may differ in lobbies, replays and spectator mode after patches.';
+  'Enlisted and BattlEye receive frequent updates. Confirm module availability on the live status panel at enlistedhacks.net before you purchase or launch. Overlay behavior may differ in lobbies, replays and spectator mode after patches.';
 
 const sharedLimitations =
   'Third-party software in Enlisted can violate Epic Terms of Service and lead to BattlEye bans or account action. You use this software at your own risk. Compatibility and availability can change after game, EAC, or Windows updates without notice.';
@@ -319,7 +319,7 @@ const tierBodies: Record<string, ProductPage['body']> = {
     { type: 'h2', text: 'Recommended pairing' },
     {
       type: 'p',
-      text: 'Pro is the most popular tier at enlistedhack.net—enough firepower for high-rank lobbies without Elite slot limits. Pair with our aimbot guide in the blog before your first ranked session.',
+      text: 'Pro is the most popular tier at enlistedhacks.net—enough firepower for high-rank lobbies without Elite slot limits. Pair with our aimbot guide in the blog before your first ranked session.',
     },
   ],
   elite: [
@@ -478,14 +478,14 @@ const productContent: Record<
       title: 'Enlisted Elite: full hack + extras',
       paragraphs: [
         'Elite includes Lite and Pro modules, plus loot assist, Auto Finish, Auto suppression break, Uniform changer, full ESP wallhack and faster patch priority.',
-        'Slots are limited. Discord support helps you set safer profiles before Ranked. Check the status banner on enlistedhack.net before you buy.',
+        'Slots are limited. Discord support helps you set safer profiles before Ranked. Check the status banner on enlistedhacks.net before you buy.',
       ],
     },
   },
   'cloud-dma': {
     images: slide('gpArena', 'gpLongRange', 'gpZoomHack'),
     goodToKnow:
-      'Cloud DMA requires supported hardware and portal access. Check enlistedhack.net status and Discord #status before patch days. Staff confirm card compatibility during onboarding.',
+      'Cloud DMA requires supported hardware and portal access. Check enlistedhacks.net status and Discord #status before patch days. Staff confirm card compatibility during onboarding.',
     limitations:
       'Not a software-only hack—DMA hardware is required. Unsupported cards and shared PCs may be declined. You accept all risk from hardware and game policy enforcement.',
     systemRequirements: [
@@ -551,7 +551,7 @@ const productContent: Record<
     limitations:
       'UGC does not guarantee account restoration. Results vary by case type. Permanent BattlEye bans may require a new account path instead of appeal.',
     systemRequirements: [
-      { icon: 'reqMailOrder', text: 'Order email used at checkout on enlistedhack.net or at checkout on enlistedhack.net.' },
+      { icon: 'reqMailOrder', text: 'Order email used at checkout on enlistedhacks.net or at checkout on enlistedhacks.net.' },
       { icon: 'reqShieldAccount', text: 'Account details and ban or restriction notification if available.' },
       { icon: 'reqWifiPortal', text: 'Internet access for Discord support and case dashboard.' },
     ],

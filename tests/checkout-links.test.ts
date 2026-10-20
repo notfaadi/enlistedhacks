@@ -19,6 +19,16 @@ test('homepage Cloud DMA checkout uses Levocheats and plan tiers', () => {
   assert.ok(!html.includes('Enlisted HWID Spoofer'), 'homepage carousel utilities removed');
 });
 
+test('404 page is noindex without homepage SEO keywords', () => {
+  const file = path.join(root, 'dist', '404.html');
+  assert.ok(fs.existsSync(file), 'Run npm run build first');
+  const html = fs.readFileSync(file, 'utf8');
+  assert.match(html, /noindex,\s*nofollow/i, '404 must be noindex,nofollow');
+  assert.ok(!html.includes('rel="canonical"'), '404 should not declare a canonical URL');
+  assert.ok(!html.includes('name="keywords"'), '404 should not emit meta keywords');
+  assert.ok(!html.includes('Page not found | Enlisted Hacks'), '404 title must not mirror marketing titles');
+});
+
 test('legacy /go/ routes redirect to Levocheats in dist', () => {
   for (const slug of ['hwid-spoofer', 'ugc', 'skin-changer']) {
     const file = path.join(root, 'dist', 'go', slug, 'index.html');

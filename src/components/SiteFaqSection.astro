@@ -16,6 +16,7 @@ interface Props {
   /** Full /faq/ experience — all topics chip bar */
   variant?: 'full' | 'contextual';
   filterTopics?: FaqTopic[];
+  hideHeader?: boolean;
 }
 
 const {
@@ -25,6 +26,7 @@ const {
   class: className,
   variant = 'contextual',
   filterTopics: filterTopicsProp,
+  hideHeader = false,
 } = Astro.props;
 
 const copy = variant === 'full' ? SITE_FAQ_SECTION_COPY : CONTEXTUAL_FAQ_SECTION_COPY;
@@ -43,4 +45,5 @@ const showFilters = filterTopics.length > 1;
   showFilters={showFilters}
   filterTopics={filterTopics}
   class={className}
+  hideHeader={hideHeader}
 />

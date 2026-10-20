@@ -3,7 +3,7 @@
  * @see docs/SEO.md
  */
 export type { PageMeta, BreadcrumbItem } from './seo/pages';
-export { PAGE_META } from './seo/pages';
+export { PAGE_META, ERROR_404_PAGE_META } from './seo/pages';
 export type { SeoRouteKey, SeoLocale } from './seo/locales';
 export {
   SEO_LOCALES,

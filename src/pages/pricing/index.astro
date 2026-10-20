@@ -1,11 +1,10 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
-import { externalCheckoutLinkAttrs } from '../../config/checkout';
-import { SEO_CHECKOUT_URL } from '../../data/seo/constants';
-
-const checkoutLink = externalCheckoutLinkAttrs(SEO_CHECKOUT_URL);
+import PlanCheckoutPanel from '../../components/product/PlanCheckoutPanel.astro';
+import { productPath } from '../../utils/path';
 import { Button } from '@/components/starwind/button';
+import Icon from '../../components/icons/Icon.astro';
 ---
 
 <BaseLayout seoRoute="/pricing/">
@@ -18,29 +17,30 @@ import { Button } from '@/components/starwind/button';
         ]}
       />
       <header class="mt-6 max-w-3xl space-y-4">
-        <h1 class="text-3xl font-bold uppercase md:text-4xl">Enlisted store</h1>
+        <h1 class="text-3xl font-bold uppercase md:text-4xl">Enlisted Cloud DMA store</h1>
         <p class="text-lg text-muted-foreground">
-          Same ESP, aimbot, skeleton, health, vehicles, recoil control, and streamproof mode on every plan.
-          Instant digital delivery after checkout.
+          Aimbot, ESP and wallhack over Cloud DMA — choose 1 week, 1 month, or lifetime. Instant delivery after
+          Levocheats checkout.
         </p>
       </header>
-      <div class="mt-10 grid gap-6 md:grid-cols-2">
-        <article class="rounded-2xl border border-border bg-card p-6">
-          <h2 class="text-xl font-bold">Monthly</h2>
-          <p class="mt-2 text-3xl font-bold text-primary">$35</p>
-          <p class="mt-1 text-sm text-muted-foreground">30 days · full feature stack</p>
-          <Button as="a" href={SEO_CHECKOUT_URL} class="mt-6 w-full" variant="primary" {...checkoutLink}>
-            Buy monthly
+
+      <div class="mt-10 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,22rem)] lg:items-start">
+        <div class="space-y-4 text-sm text-muted-foreground">
+          <p>
+            All plans include portal access, Discord onboarding for supported DMA hardware, and patch-day firmware
+            updates when Enlisted or BattlEye changes.
+          </p>
+          <Button as="a" href={productPath('cloud-dma')} variant="outline" size="sm" class="rounded-full">
+            Cloud DMA feature list
+            <Icon name="arrowRight" size={16} />
           </Button>
-        </article>
-        <article class="rounded-2xl border border-primary/40 bg-card p-6">
-          <h2 class="text-xl font-bold">Lifetime</h2>
-          <p class="mt-2 text-3xl font-bold text-primary">$150</p>
-          <p class="mt-1 text-sm text-muted-foreground">One-time · full feature stack</p>
-          <Button as="a" href={SEO_CHECKOUT_URL} class="mt-6 w-full" variant="primary" {...checkoutLink}>
-            Buy lifetime
-          </Button>
-        </article>
+        </div>
+        <aside
+          class="overflow-hidden rounded-2xl border border-primary/35 bg-card p-5 shadow-md ring-1 ring-primary/15 md:p-6"
+          aria-label="Cloud DMA pricing"
+        >
+          <PlanCheckoutPanel productSlug="cloud-dma" planHeading="Select plan" />
+        </aside>
       </div>
     </div>
   </section>

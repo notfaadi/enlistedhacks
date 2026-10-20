@@ -27,6 +27,8 @@ interface Props {
   articlePublishedTime?: string;
   articleModifiedTime?: string;
   noindex?: boolean;
+  /** Do not emit canonical (recommended for error pages on static hosts). */
+  omitCanonical?: boolean;
   homePage?: boolean;
   locale?: string;
 }
@@ -41,15 +43,22 @@ const {
   articlePublishedTime,
   articleModifiedTime,
   noindex = false,
+  omitCanonical = false,
   homePage = false,
   locale = 'en',
 } = Astro.props;
 
 const meta = pageMetaOverride ?? (seoRoute ? getPageMeta(seoRoute) : getPageMetaForPath(Astro.url.pathname));
-const canonical =
-  canonicalOverride ?? (seoRoute ? canonicalForRoute(seoRoute) : canonicalForPathname(Astro.url.pathname));
-const alternates = skipHreflang ? [] : buildHreflangAlternates(meta.route, SEO_SITE_ORIGIN);
-const jsonLdGraph = [...buildSeoGraph(meta, canonical), ...extraJsonLd];
+const canonical = omitCanonical
+  ? undefined
+  : (canonicalOverride ?? (seoRoute ? canonicalForRoute(seoRoute) : canonicalForPathname(Astro.url.pathname)));
+const alternates =
+  skipHreflang || !canonical
+    ? []
+    : buildHreflangAlternates(meta.route, SEO_SITE_ORIGIN, canonical);
+const jsonLdGraph = noindex
+  ? extraJsonLd
+  : [...buildSeoGraph(meta, canonical ?? `${SEO_SITE_ORIGIN}/`), ...extraJsonLd];
 ---
 
 <!doctype html>

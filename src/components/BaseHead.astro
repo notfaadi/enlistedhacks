@@ -14,7 +14,7 @@ import JsonLd from './JsonLd.astro';
 
 export interface BaseHeadProps {
   meta: PageMeta;
-  canonical: string;
+  canonical?: string;
   locale?: string;
   dir?: 'ltr' | 'rtl';
   alternates?: { hreflang: string; href: string }[];
@@ -44,12 +44,12 @@ const ogImageUrl = meta.ogImage.startsWith('http')
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>{meta.title}</title>
 <meta name="description" content={meta.description} />
-<meta name="keywords" content={meta.keywords} />
+{meta.keywords ? <meta name="keywords" content={meta.keywords} /> : null}
 <meta name="author" content={SEO_AUTHOR} />
 <meta name="robots" content={robots} />
 <meta name="googlebot" content={robots} />
 <meta name="theme-color" content={SEO_THEME_COLOR} />
-<link rel="canonical" href={canonical} />
+{canonical ? <link rel="canonical" href={canonical} /> : null}
 {
   alternates.map((alt) => (
     <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
@@ -72,7 +72,7 @@ const ogImageUrl = meta.ogImage.startsWith('http')
 <meta property="og:image:width" content={String(SEO_OG_IMAGE_WIDTH)} />
 <meta property="og:image:height" content={String(SEO_OG_IMAGE_HEIGHT)} />
 <meta property="og:image:type" content={SEO_OG_IMAGE_TYPE} />
-<meta property="og:url" content={canonical} />
+{canonical ? <meta property="og:url" content={canonical} /> : null}
 <meta property="og:type" content={ogType} />
 <meta property="og:site_name" content={SEO_SITE_NAME} />
 <meta property="og:locale" content="en_US" />

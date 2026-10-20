@@ -67,17 +67,17 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
   '/terms/': {
     title: 'Terms for Enlisted Hacks | License & Refunds',
     description:
-      'Terms for buying Enlisted Hacks on enlistedhack.net — license use, delivery, refunds and account risk.',
+      'Terms for buying Enlisted Hacks on enlistedhacks.net — license use, delivery, refunds and account risk.',
   },
   '/privacy/': {
     title: 'Privacy Policy | Enlisted Hacks Shop',
     description:
-      'How the Enlisted Hacks shop at enlistedhack.net uses analytics, cookies and contact data.',
+      'How the Enlisted Hacks shop at enlistedhacks.net uses analytics, cookies and contact data.',
   },
   '/about/': {
     title: 'About Enlisted Hacks | Buy PC Aimbot & ESP',
     description:
-      'About Enlisted Hacks — we sell PC Enlisted Hacks (aimbot, ESP, wallhack), guides and utilities at enlistedhack.net.',
+      'About Enlisted Hacks — we sell PC Enlisted Hacks (aimbot, ESP, wallhack), guides and utilities at enlistedhacks.net.',
   },
   '/support/': {
     title: 'Enlisted Hacks Support | Loader, HWID & Checkout',

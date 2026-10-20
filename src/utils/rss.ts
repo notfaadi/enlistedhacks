@@ -35,7 +35,7 @@ export function buildRssFeed(): string {
   <channel>
     <title>Enlisted Hacks Blog</title>
     <link>${SITE_ORIGIN}/blog/</link>
-    <description>Enlisted hack guides, patch notes, and setup walkthroughs from enlistedhack.net.</description>
+    <description>Enlisted hack guides, patch notes, and setup walkthroughs from enlistedhacks.net.</description>
     <language>en-us</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <atom:link href="${feedUrl}" rel="self" type="application/rss+xml" />

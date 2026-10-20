@@ -25,9 +25,9 @@ const kw = (extra: string) => `${GLOBAL_KEYWORDS}, ${extra}`;
 export const PAGE_META: Record<SeoRouteKey, PageMeta> = {
   '/': {
     route: '/',
-    title: 'Enlisted Hacks | Official Windows PC Site',
+    title: 'Buy Undetected Enlisted Hacks | Aimbot, ESP & Wallhack',
     description:
-      'Official Enlisted Hacks site for Windows PC. Compare features, store plans, and live status — then buy ESP, aimbot, skeleton, and vehicle tools in one license.',
+      'Buy undetected Enlisted hacks for Windows PC — aimbot, ESP, wallhack, radar and Cloud DMA plans. Updated after Easy Anti-Cheat patches with instant delivery.',
     ogImage: '/images/enlisted-hacks-hero-1024w.webp',
     ogImageAlt: 'Enlisted Hacks homepage hero — ESP and aimbot for Enlisted',
     keywords: kw('enlisted hacks official site, enlisted hacks pc, buy enlisted hacks'),
@@ -66,10 +66,10 @@ export const PAGE_META: Record<SeoRouteKey, PageMeta> = {
     route: '/pricing/',
     title: 'Enlisted Store | Enlisted Hacks',
     description:
-      'Monthly and lifetime Enlisted plans for Windows PC. Same ESP, aimbot, skeleton, and vehicle features on both. Instant delivery after payment checkout.',
+      'Enlisted Cloud DMA plans for Windows PC — 1 week, 1 month, or lifetime. Aimbot, ESP and wallhack with instant Levocheats delivery.',
     ogImage: '/images/enlisted-hacks-combat.webp',
-    ogImageAlt: 'Enlisted Hacks store plans for monthly and lifetime licenses',
-    keywords: kw('enlisted hacks price, enlisted cheats monthly, enlisted hacks lifetime'),
+    ogImageAlt: 'Enlisted Hacks Cloud DMA store plans',
+    keywords: kw('enlisted hacks price, enlisted cloud dma, enlisted cheats monthly, enlisted hacks lifetime'),
     breadcrumbs: [
       { name: 'Home', path: '/' },
       { name: 'Store', path: '/pricing/' },
@@ -235,4 +235,19 @@ export const PAGE_META: Record<SeoRouteKey, PageMeta> = {
       { name: 'Refund Policy', path: '/refund-policy/' },
     ],
   },
+};
+
+/** Minimal head tags for 404 — noindex in layout; no keywords or rich schema. */
+export const ERROR_404_PAGE_META: PageMeta = {
+  route: '/',
+  title: '404 Not Found',
+  description: 'The requested URL is not available on this site.',
+  ogImage: '/images/enlisted-hacks-hero-1024w.webp',
+  ogImageAlt: '',
+  keywords: '',
+  breadcrumbs: [],
+  includeProduct: false,
+  includeFaqPage: false,
+  includeBlogCollection: false,
+  includeReviewItemList: false,
 };

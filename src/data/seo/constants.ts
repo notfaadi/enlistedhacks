@@ -14,7 +14,7 @@ export const SEO_DEFAULT_LOCALE = 'en';
 export const SEO_IN_LANGUAGE = 'en-US';
 
 export const GLOBAL_KEYWORDS =
-  'enlisted hacks, enlisted cheats, undetected enlisted hacks, enlisted esp, enlisted aimbot, enlisted wallhack, enlisted radar hack, escape from enlisted hacks, enlisted hacks windows pc';
+  'enlisted hacks, enlisted cheats, undetected enlisted hacks, enlisted esp, enlisted aimbot, enlisted wallhack, enlisted radar hack, enlisted cloud dma, enlisted hacks windows pc';
 
 export const ORGANIZATION_DESCRIPTION =
   'Undetected enlisted hacks — ESP, aimbot, skeleton, and vehicles for PC. Enlisted Hacks is an undetected Enlisted cheat package for Windows PC. Includes ESP, aimbot, skeleton, health, vehicles, recoil control, and streamproof mode with Easy Anti-Cheat maintenance.';

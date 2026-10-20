@@ -64,6 +64,12 @@ const imageWidths = isHero ? HERO_IMAGE_WIDTHS : undefined;
               desktopOnly={desktopOnly}
               class={isHero ? 'h-full w-full object-contain' : undefined}
             />
+            {isHero && (
+              <figcaption class="sr-only">
+                {img.caption}
+                {img.captionDesc ? `: ${img.captionDesc}` : ''}
+              </figcaption>
+            )}
             {!isHero && (img.caption || img.captionDesc) && (
               <figcaption class="mt-2 px-1 text-sm text-muted-foreground">
                 <strong class="text-foreground">{img.caption}</strong>

@@ -22,9 +22,11 @@ const faqs = getAllFaqs();
           eyebrow="Help center"
           title="Enlisted hacks FAQ"
           desc="Everything about Lite, Pro, Elite tiers, utilities, safety and blog topics—in one place."
+          headingLevel={1}
+          titleId="faq-page-title"
         />
       </div>
     </div>
   </section>
-  <SiteFaqSection items={faqs} variant="full" />
+  <SiteFaqSection items={faqs} variant="full" hideHeader titleId="faq-page-title" />
 </BaseLayout>

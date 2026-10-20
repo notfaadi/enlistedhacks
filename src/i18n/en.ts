@@ -424,7 +424,7 @@ export const en: Translations = {
         title: 'Enlisted HWID Spoofer vs New Account After BattlEye Ban',
         slug: 'enlisted-hwid-spoofer-after-ban',
         image: '/images/blog/enlisted-hwid-spoofer-after-ban.png',
-        desc: 'When to spoof hardware, when to start fresh, and how enlistedhack.net/products/enlisted-hacks fits each path.',
+        desc: 'When to spoof hardware, when to start fresh, and how enlistedhacks.net/products/enlisted-hacks fits each path.',
         date: 'Aug 13, 2026',
         readTime: '7 min read',
       },
@@ -503,7 +503,7 @@ export const en: Translations = {
         num: '01',
         phase: 'Before purchase',
         title: 'Check status',
-        desc: 'Read the live banner on enlistedhack.net before you buy or launch.',
+        desc: 'Read the live banner on enlistedhacks.net before you buy or launch.',
       },
       {
         num: '02',
@@ -570,7 +570,7 @@ export const en: Translations = {
     ],
     ticketTitle: 'Include in your ticket',
     ticketItems: [
-      { title: 'Order email', desc: 'The email you used at checkout on enlistedhack.net.' },
+      { title: 'Order email', desc: 'The email you used at checkout on enlistedhacks.net.' },
       { title: 'Platform', desc: 'Windows 10 or 11, Gaijin Launcher, and your Enlisted version.' },
       { title: 'Error detail', desc: 'Screenshot or exact text from the loader or Gaijin.' },
     ],
@@ -583,7 +583,7 @@ export const en: Translations = {
       {
         num: '01',
         q: 'Where do I check if Enlisted hacks are online?',
-        a: 'The live status banner is on enlistedhack.net and in the Discord #status. Always check after an Enlisted or BattlEye update.',
+        a: 'The live status banner is on enlistedhacks.net and in the Discord #status. Always check after an Enlisted or BattlEye update.',
       },
       {
         num: '02',
@@ -608,7 +608,7 @@ export const en: Translations = {
       {
         num: '06',
         q: 'Where are products and utilities listed?',
-        a: 'Hack tiers, HWID Spoofer, UGC and Uniform changer live at enlistedhack.net/products/enlisted-hacks with feature lists and checkout via our partner.',
+        a: 'Hack tiers, HWID Spoofer, UGC and Uniform changer live at enlistedhacks.net/products/enlisted-hacks with feature lists and checkout via our partner.',
       },
     ],
   },
@@ -632,7 +632,7 @@ export const en: Translations = {
     about: {
       title: 'About Enlisted Hacks | Buy PC Aimbot & ESP',
       description:
-        'About Enlisted Hacks — buy PC Enlisted hacks (aimbot, ESP, wallhack), utilities and guides at enlistedhack.net.',
+        'About Enlisted Hacks — buy PC Enlisted hacks (aimbot, ESP, wallhack), utilities and guides at enlistedhacks.net.',
       sections: [
         {
           heading: 'Who we are',
@@ -659,12 +659,12 @@ export const en: Translations = {
     privacy: {
       title: 'Privacy Policy | Enlisted Hacks Shop',
       description:
-        'How the Enlisted hacks shop at enlistedhack.net handles analytics, cookies and contact data.',
+        'How the Enlisted hacks shop at enlistedhacks.net handles analytics, cookies and contact data.',
       sections: [
         {
           heading: 'Information we collect',
           paragraphs: [
-            'We may collect basic analytics such as page views, device type, browser and approximate region through Google Analytics when it is enabled. Checkout runs on external pages. We do not store payment card data on enlistedhack.net.',
+            'We may collect basic analytics such as page views, device type, browser and approximate region through Google Analytics when it is enabled. Checkout runs on external pages. We do not store payment card data on enlistedhacks.net.',
           ],
         },
         {
@@ -690,12 +690,12 @@ export const en: Translations = {
     terms: {
       title: 'Terms for Enlisted Hacks | License & Refunds',
       description:
-        'Terms for buying Enlisted hacks on enlistedhack.net — license use, delivery, refunds and account risk.',
+        'Terms for buying Enlisted hacks on enlistedhacks.net — license use, delivery, refunds and account risk.',
       sections: [
         {
           heading: 'Agreement',
           paragraphs: [
-            'Last updated: September 2026. By using enlistedhack.net or buying a product listed here, you agree to these Terms & Conditions and our Privacy Policy.',
+            'Last updated: September 2026. By using enlistedhacks.net or buying a product listed here, you agree to these Terms & Conditions and our Privacy Policy.',
           ],
         },
         {
@@ -708,7 +708,7 @@ export const en: Translations = {
         {
           heading: 'Checkout and delivery',
           paragraphs: [
-            'Payment and license delivery run on external checkout pages. enlistedhack.net does not process or store payment card numbers.',
+            'Payment and license delivery run on external checkout pages. enlistedhacks.net does not process or store payment card numbers.',
             'After purchase, use the operator portal linked from your order flow to download the current loader and setup guide before launching Enlisted.',
           ],
         },
@@ -750,7 +750,7 @@ export const en: Translations = {
     support: {
       title: 'Enlisted Hacks Support | Loader, HWID & Checkout',
       description:
-        'Enlisted hacks support for loader setup, HWID spoofing and checkout help at enlistedhack.net.',
+        'Enlisted hacks support for loader setup, HWID spoofing and checkout help at enlistedhacks.net.',
     },
   },
   ui: {

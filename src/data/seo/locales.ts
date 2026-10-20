@@ -194,19 +194,17 @@ export function localePathForRoute(route: SeoRouteKey, locale: SeoLocale): strin
   return `/${locale}/${stripped}/`;
 }
 
+/** English-only site until localized routes exist — avoid hreflang 404s. */
 export function buildHreflangAlternates(
   route: SeoRouteKey,
   origin: string,
+  canonicalUrl?: string,
 ): { hreflang: string; href: string }[] {
-  const links = SEO_LOCALES.map((locale) => ({
-    hreflang: locale,
-    href: `${origin}${localePathForRoute(route, locale)}`,
-  }));
-  links.push({
-    hreflang: 'x-default',
-    href: `${origin}${EN_PATH_BY_ROUTE[route]}`,
-  });
-  return links;
+  const enUrl = canonicalUrl ?? `${origin}${EN_PATH_BY_ROUTE[route]}`;
+  return [
+    { hreflang: 'en', href: enUrl },
+    { hreflang: 'x-default', href: enUrl },
+  ];
 }
 
 /** Map live Astro paths to SEO route keys. */

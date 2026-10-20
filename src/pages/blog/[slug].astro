@@ -21,6 +21,7 @@ import { Button } from '@/components/starwind/button';
 import { Prose } from '@/components/starwind/prose';
 import BlogPostCta from '../../components/BlogPostCta.astro';
 import { normalizeInternalPath, ROUTES } from '../../utils/path';
+import { SITE_URL } from '../../config/site';
 
 export function getStaticPaths() {
   return getAllBlogSlugs().map((slug) => ({ params: { slug } }));
@@ -51,7 +52,7 @@ function linkify(text: string): string {
     .replace(/(https:\/\/enlistedhackshacks\.com[^\s.,;)]*)/g, (_match, url: string) => {
       const path = url.replace(/^https:\/\/enlistedhackshacks\.com/, '');
       const normalized = normalizeInternalPath(path);
-      const href = normalized.startsWith('http') ? normalized : `https://enlistedhack.net${normalized}`;
+      const href = normalized.startsWith('http') ? normalized : `${SITE_URL}${normalized}`;
       return `<a href="${href}">${url}</a>`;
     });
 }
