@@ -1,11 +1,4 @@
-# Canonical host (301)
-https://www.enlistedhacks.net/* https://enlistedhacks.net/:splat 301
-http://www.enlistedhacks.net/* https://enlistedhacks.net/:splat 301
-http://enlistedhacks.net/* https://enlistedhacks.net/:splat 301
-https://enlistedhack.net/* https://enlistedhacks.net/:splat 301
-http://enlistedhack.net/* https://enlistedhacks.net/:splat 301
-http://www.enlistedhack.net/* https://enlistedhacks.net/:splat 301
-https://www.enlistedhack.net/* https://enlistedhacks.net/:splat 301
+# Host/canonical 301s (www, http, enlistedhack.net) → see docs/cloudflare-canonical-host.md (Cloudflare Bulk Redirects).
 
 # Checkout (302 → Levocheats enlisted)
 /go/enlisted  https://levocheats.com/go/FDI?to=%2Fenlisted-cheats  302
