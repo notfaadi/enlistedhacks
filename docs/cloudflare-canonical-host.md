@@ -1,6 +1,8 @@
 # Canonical host redirects (Cloudflare dashboard)
 
-Workers static `_redirects` only supports **relative** paths. Configure these as **Bulk Redirects** (or Page Rules) in Cloudflare for zone `enlistedhacks.net`:
+**Live `enlistedhacks.net` must use this Worker** (`worker.mjs` + `wrangler deploy`) or these **Bulk Redirects** on the zone that currently serves the site.
+
+Workers static `_redirects` only supports **relative** paths. Configure these as **Bulk Redirects** in Cloudflare → **enlistedhacks.net** → Rules → Redirect Rules (or Bulk Redirects):
 
 | Source | Target | Status |
 |--------|--------|--------|

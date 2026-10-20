@@ -2,6 +2,7 @@
 name = "enlisted-cheats-com"
 main = "worker.mjs"
 compatibility_date = "2025-10-11"
+workers_dev = true
 
 [assets]
 directory = "./dist"
@@ -9,10 +10,10 @@ binding = "ASSETS"
 not_found_handling = "404-page"
 html_handling = "auto-trailing-slash"
 
-[[routes]]
-pattern = "enlistedhacks.net"
-custom_domain = true
-
-[[routes]]
-pattern = "www.enlistedhacks.net"
-custom_domain = true
+# Attach when zone enlistedhacks.net is on this Cloudflare account:
+# [[routes]]
+# pattern = "enlistedhacks.net/*"
+# zone_name = "enlistedhacks.net"
+# [[routes]]
+# pattern = "www.enlistedhacks.net/*"
+# zone_name = "enlistedhacks.net"
