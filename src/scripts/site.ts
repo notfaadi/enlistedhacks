@@ -103,23 +103,12 @@ function initThemeMetaColor() {
 
 const LEVOCHEATS_CHECKOUT = 'https://levocheats.com/go/FDI?to=%2Fenlisted-cheats';
 
-/** Rewrite stale /go/* or Zadeyo checkout links after navigation or old cached HTML. */
+/** Rewrite stale Zadeyo checkout links after navigation or old cached HTML. */
 function initCheckoutLinks() {
-  const selectors = 'a[href], a[data-checkout-buy]';
-  document.querySelectorAll<HTMLAnchorElement>(selectors).forEach((anchor) => {
-    const href = anchor.getAttribute('href') ?? '';
-    if (
-      href.includes('zadeyo.com') ||
-      href.startsWith('/go/') ||
-      href.includes('/go/enlisted') ||
-      href.includes('/go/hwid-spoofer') ||
-      href.includes('/go/ugc') ||
-      href.includes('/go/skin-changer')
-    ) {
-      anchor.href = LEVOCHEATS_CHECKOUT;
-      anchor.target = '_blank';
-      anchor.rel = 'noopener noreferrer';
-    }
+  document.querySelectorAll<HTMLAnchorElement>('a[href*="zadeyo.com"]').forEach((anchor) => {
+    anchor.href = LEVOCHEATS_CHECKOUT;
+    anchor.target = '_blank';
+    anchor.rel = 'noopener noreferrer';
   });
 }
 

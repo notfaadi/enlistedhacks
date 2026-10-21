@@ -1,5 +1,5 @@
 import { t } from '../i18n';
-import { ENLISTED_CHECKOUT_URL } from '../config/checkout';
+import { checkoutForSlug, ENLISTED_CHECKOUT_URL } from '../config/checkout';
 import type { IconName } from '../components/icons/types';
 
 export interface ProductSlide {
@@ -618,7 +618,7 @@ function buildTierPages(): ProductPage[] {
       features: cheat.features,
       more: cheat.more,
       variant: cheat.variant,
-      buyUrl: ENLISTED_CHECKOUT_URL,
+      buyUrl: checkoutForSlug(slug),
       images: content.images,
       overview: content.overview,
       acquisition: acquisitionFor(displayName),
@@ -650,7 +650,7 @@ function buildUtilityPages(): ProductPage[] {
         desc: product.desc,
         features: product.features,
         more: product.more,
-        buyUrl: ENLISTED_CHECKOUT_URL,
+        buyUrl: checkoutForSlug(slug),
         images: content.images,
         overview: content.overview,
         acquisition: acquisitionFor(product.title),

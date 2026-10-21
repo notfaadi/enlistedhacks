@@ -5,7 +5,9 @@ import test from 'node:test';
 import { fileURLToPath } from 'node:url';
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
-const LEVO = 'https://levocheats.com/go/FDI?to=%2Fenlisted-cheats';
+const LEVO_ENLISTED = 'https://levocheats.com/go/FDI?to=%2Fenlisted-cheats';
+const LEVO_CLOUD_DMA = 'https://levocheats.com/go/FDI?to=%2Fcloud-dma';
+const LEVO_HWID = 'https://levocheats.com/go/FDI?to=%2Fhwid-spoofer';
 
 test('homepage Cloud DMA checkout uses Levocheats and plan tiers', () => {
   const indexPath = path.join(root, 'dist', 'index.html');
@@ -15,8 +17,23 @@ test('homepage Cloud DMA checkout uses Levocheats and plan tiers', () => {
   assert.ok(!html.includes('href="https://zadeyo.com'), 'homepage must not link to zadeyo checkout');
   assert.ok(html.includes('Enlisted Cloud DMA'), 'homepage should feature Cloud DMA');
   assert.ok(html.includes('1 Week') && html.includes('1 Month') && html.includes('Lifetime'));
-  assert.ok(html.includes(LEVO), 'checkout should link to Levocheats');
+  assert.ok(html.includes(LEVO_CLOUD_DMA), 'Cloud DMA buy should link to Levocheats cloud-dma store');
   assert.ok(!html.includes('Enlisted HWID Spoofer'), 'homepage carousel utilities removed');
+});
+
+test('product pages link Buy now to matching Levocheats store paths', () => {
+  const cloud = path.join(root, 'dist', 'products', 'enlisted-hacks', 'cloud-dma', 'index.html');
+  const hwid = path.join(root, 'dist', 'products', 'enlisted-hacks', 'hwid-spoofer', 'index.html');
+  const catalog = path.join(root, 'dist', 'enlisted-hacks', 'index.html');
+  assert.ok(fs.existsSync(cloud) && fs.existsSync(hwid), 'Run npm run build first');
+  assert.ok(fs.readFileSync(cloud, 'utf8').includes(LEVO_CLOUD_DMA));
+  assert.ok(fs.readFileSync(hwid, 'utf8').includes(LEVO_HWID));
+  assert.ok(fs.existsSync(catalog), 'Run npm run build first');
+  const catalogHtml = fs.readFileSync(catalog, 'utf8');
+  assert.ok(
+    catalogHtml.includes(LEVO_CLOUD_DMA),
+    'Enlisted Cloud DMA catalog Buy now must link to Levocheats cloud-dma',
+  );
 });
 
 test('404 page is noindex without homepage SEO keywords', () => {
@@ -30,14 +47,16 @@ test('404 page is noindex without homepage SEO keywords', () => {
 });
 
 test('legacy /go/ routes redirect to Levocheats in dist', () => {
-  for (const slug of ['hwid-spoofer', 'ugc', 'skin-changer']) {
+  const expected: Record<string, string> = {
+    'hwid-spoofer': encodeURIComponent('/hwid-spoofer'),
+    ugc: encodeURIComponent('/ugc'),
+    'skin-changer': encodeURIComponent('/unlock-all'),
+  };
+  for (const slug of Object.keys(expected)) {
     const file = path.join(root, 'dist', 'go', slug, 'index.html');
     assert.ok(fs.existsSync(file), `missing static redirect page /go/${slug}/`);
     const html = fs.readFileSync(file, 'utf8');
-    assert.ok(
-      html.includes(encodeURIComponent('/enlisted-cheats')) || html.includes(LEVO),
-      `/go/${slug}/ should redirect to Levocheats`,
-    );
+    assert.ok(html.includes(expected[slug]!), `/go/${slug}/ should redirect to matching Levocheats product`);
     assert.ok(!html.includes('zadeyo.com'), `/go/${slug}/ must not reference zadeyo`);
   }
 });

@@ -10,13 +10,20 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/starwind/card';
-import { ENLISTED_CHECKOUT_URL, externalCheckoutLinkAttrs, resolveCheckoutHref } from '../config/checkout';
+import {
+  checkoutForSlug,
+  ENLISTED_CHECKOUT_URL,
+  externalCheckoutLinkAttrs,
+  resolveCheckoutHref,
+} from '../config/checkout';
 
 interface Props {
   label: string;
   title: string;
   href: string;
   buyUrl: string;
+  /** When set, Buy now always uses the Levocheats page for this product slug. */
+  productSlug?: string;
   features: string[];
   more?: number;
   icon?: IconName;
@@ -33,6 +40,7 @@ const {
   title,
   href,
   buyUrl,
+  productSlug,
   features,
   more = 0,
   icon = 'package',
@@ -45,7 +53,9 @@ const {
 } = Astro.props;
 
 const displayFeatures = features.slice(0, maxFeatures);
-const checkoutHref = resolveCheckoutHref(buyUrl || ENLISTED_CHECKOUT_URL);
+const checkoutHref = productSlug
+  ? checkoutForSlug(productSlug)
+  : resolveCheckoutHref(buyUrl || ENLISTED_CHECKOUT_URL);
 
 const statusBadgeIcon = (text: string): IconName => {
   if (/limited/i.test(text)) return 'alert';

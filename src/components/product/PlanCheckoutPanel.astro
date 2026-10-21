@@ -1,11 +1,6 @@
 ---
-import { ENLISTED_CHECKOUT_URL, externalCheckoutLinkAttrs } from '../../config/checkout';
-import {
-  checkoutUrlWithPlan,
-  formatPlanPrice,
-  getProductPlans,
-  type ProductPlan,
-} from '../../data/productPricing';
+import { checkoutForSlug, externalCheckoutLinkAttrs } from '../../config/checkout';
+import { formatPlanPrice, getProductPlans, type ProductPlan } from '../../data/productPricing';
 import Icon from '../icons/Icon.astro';
 import { Badge } from '@/components/starwind/badge';
 import { Button } from '@/components/starwind/button';
@@ -28,12 +23,13 @@ const {
 
 const plans = getProductPlans(productSlug);
 const defaultPlan = plans[0]!;
-const checkoutBase = ENLISTED_CHECKOUT_URL;
+const checkoutBase = checkoutForSlug(productSlug);
 ---
 
 <div
   class:list={['plan-checkout', className]}
   data-product-checkout
+  data-product-slug={productSlug}
   data-buy-url={checkoutBase}
   data-plans={JSON.stringify(plans)}
 >
@@ -76,7 +72,7 @@ const checkoutBase = ENLISTED_CHECKOUT_URL;
 
   <Button
     as="a"
-    href={checkoutUrlWithPlan(checkoutBase, defaultPlan.id)}
+    href={checkoutBase}
     variant="primary"
     size="lg"
     class="plan-checkout__buy mt-5 w-full rounded-xl text-base font-semibold"
@@ -115,11 +111,23 @@ const checkoutBase = ENLISTED_CHECKOUT_URL;
       if (root.hasAttribute('data-checkout-bound')) return;
       root.setAttribute('data-checkout-bound', '');
 
-      let buyUrl =
-        root.getAttribute('data-buy-url') ??
-        'https://levocheats.com/go/FDI?to=%2Fenlisted-cheats';
-      if (buyUrl.includes('zadeyo.com') || buyUrl.startsWith('/go/')) {
-        buyUrl = 'https://levocheats.com/go/FDI?to=%2Fenlisted-cheats';
+      const slug = root.getAttribute('data-product-slug') ?? '';
+      const checkoutBySlug: Record<string, string> = {
+        'cloud-dma': 'https://levocheats.com/go/FDI?to=%2Fcloud-dma',
+        'hwid-spoofer': 'https://levocheats.com/go/FDI?to=%2Fhwid-spoofer',
+        ugc: 'https://levocheats.com/go/FDI?to=%2Fugc',
+        'unlock-all': 'https://levocheats.com/go/FDI?to=%2Funlock-all',
+      };
+
+      let buyUrl = root.getAttribute('data-buy-url');
+      if (!buyUrl || buyUrl.includes('zadeyo.com')) {
+        buyUrl =
+          checkoutBySlug[slug] ?? 'https://levocheats.com/go/FDI?to=%2Fenlisted-cheats';
+      } else if (
+        slug === 'cloud-dma' &&
+        buyUrl.includes('%2Fenlisted-cheats')
+      ) {
+        buyUrl = checkoutBySlug['cloud-dma'];
       }
       const plansRaw = root.getAttribute('data-plans');
       if (!plansRaw) return;
@@ -144,8 +152,7 @@ const checkoutBase = ENLISTED_CHECKOUT_URL;
 
         const price = `$${plan.priceUsd.toFixed(2)}`;
         if (buyLabel) buyLabel.textContent = `Buy now — ${price}`;
-        const separator = buyUrl.includes('?') ? '&' : '?';
-        buyBtn.href = `${buyUrl}${separator}plan=${plan.id}`;
+        buyBtn.href = buyUrl;
       };
 
       group.addEventListener('click', () => window.setTimeout(sync, 0));

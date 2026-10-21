@@ -1,6 +1,6 @@
 ---
 import type { ProductPage } from '../../data/products';
-import { ENLISTED_CHECKOUT_URL, externalCheckoutLinkAttrs } from '../../config/checkout';
+import { checkoutForSlug, externalCheckoutLinkAttrs } from '../../config/checkout';
 import SectionHeader from '../SectionHeader.astro';
 import Icon from '../icons/Icon.astro';
 import { Button } from '@/components/starwind/button';
@@ -11,6 +11,7 @@ interface Props {
 }
 
 const { product } = Astro.props;
+const checkoutUrl = checkoutForSlug(product.slug);
 ---
 
 <section
@@ -50,11 +51,11 @@ const { product } = Astro.props;
       </Button>
       <Button
         as="a"
-        href={ENLISTED_CHECKOUT_URL}
+        href={checkoutUrl}
         variant="primary"
         size="sm"
         class="rounded-full"
-        {...externalCheckoutLinkAttrs(ENLISTED_CHECKOUT_URL)}
+        {...externalCheckoutLinkAttrs(checkoutUrl)}
       >
         Buy now
         <Icon name="arrowRight" size={16} />
