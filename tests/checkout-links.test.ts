@@ -8,6 +8,7 @@ const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const LEVO_ENLISTED = 'https://levocheats.com/go/FDI?to=%2Fenlisted-cheats';
 const LEVO_CLOUD_DMA = 'https://levocheats.com/go/FDI?to=%2Fcloud-dma';
 const LEVO_HWID = 'https://levocheats.com/go/FDI?to=%2Fhwid-spoofer';
+const LEVO_SKIN_CHANGER = 'https://levocheats.com/go/FDI?to=%2Fskin-changer';
 
 test('homepage Cloud DMA checkout uses Levocheats and plan tiers', () => {
   const indexPath = path.join(root, 'dist', 'index.html');
@@ -26,6 +27,14 @@ test('resolveCheckoutHref keeps Cloud DMA Levocheats go link (not Enlisted)', as
   const cloudGo = 'https://levocheats.com/go/FDI?to=%2Fcloud-dma';
   assert.equal(resolveCheckoutHref(cloudGo), cloudGo);
   assert.ok(!resolveCheckoutHref(cloudGo).includes('enlisted-cheats'));
+});
+
+test('enlisted-hacks catalog Uniform changer Buy now uses Levocheats skin-changer', () => {
+  const hub = path.join(root, 'dist', 'enlisted-hacks', 'index.html');
+  assert.ok(fs.existsSync(hub), 'Run npm run build first');
+  const html = fs.readFileSync(hub, 'utf8');
+  assert.ok(html.includes(LEVO_SKIN_CHANGER), 'Uniform changer card must link to Levocheats skin-changer');
+  assert.ok(!html.includes('to=%2Funlock-all'), 'must not use dead /unlock-all Levocheats path');
 });
 
 test('enlisted-hacks catalog Cloud DMA Buy now uses Levocheats cloud-dma', () => {
@@ -57,7 +66,7 @@ test('legacy /go/ routes redirect to Levocheats in dist', () => {
   const expected: Record<string, string> = {
     'hwid-spoofer': encodeURIComponent('/hwid-spoofer'),
     ugc: encodeURIComponent('/ugc'),
-    'skin-changer': encodeURIComponent('/unlock-all'),
+    'skin-changer': encodeURIComponent('/skin-changer'),
   };
   for (const slug of Object.keys(expected)) {
     const file = path.join(root, 'dist', 'go', slug, 'index.html');

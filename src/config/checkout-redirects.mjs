@@ -18,7 +18,7 @@ export const LEVOCHEATS_STORE_PATH_BY_SLUG = {
   'cloud-dma': '/cloud-dma',
   'hwid-spoofer': '/hwid-spoofer',
   ugc: '/ugc',
-  'unlock-all': '/unlock-all',
+  'unlock-all': '/skin-changer',
 };
 
 /** @param {string} productSlug */
@@ -31,7 +31,7 @@ export function levocheatsCheckoutForSlug(productSlug) {
 /** Checkout destinations keyed by internal product id. */
 export const CHECKOUT_URLS = {
   enlisted: LEVOCHEATS_ENLISTED_CHECKOUT,
-  skinChanger: levocheatsGo('/unlock-all'),
+  skinChanger: levocheatsGo('/skin-changer'),
   hwidSpoofer: levocheatsGo('/hwid-spoofer'),
   ugc: levocheatsGo('/ugc'),
 };

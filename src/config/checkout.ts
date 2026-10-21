@@ -49,7 +49,7 @@ const STORE_PATH_TO_SLUG: Record<string, string> = {
   'cloud-dma': 'cloud-dma',
   'hwid-spoofer': 'hwid-spoofer',
   ugc: 'ugc',
-  'unlock-all': 'unlock-all',
+  'skin-changer': 'unlock-all',
 };
 
 function slugFromLevocheatsGoHref(href: string): string | null {
