@@ -1,4 +1,4 @@
-# Production Worker (custom domains on enlistedhack.net; add enlistedhacks.net when zone is on this account).
+# Production Worker — primary domain enlistedhack.net; enlistedhacks.net 301s here when zone is attached.
 name = "enlistedhacks"
 main = "worker.mjs"
 compatibility_date = "2025-10-11"
@@ -20,7 +20,7 @@ custom_domain = true
 pattern = "www.enlistedhack.net"
 custom_domain = true
 
-# Uncomment after adding zone enlistedhacks.net to this Cloudflare account (see docs/cloudflare-canonical-host.md):
+# enlistedhacks.net zone is on another Cloudflare account — add routes after transfer (see docs/cloudflare-canonical-host.md).
 # [[routes]]
 # pattern = "enlistedhacks.net"
 # custom_domain = true

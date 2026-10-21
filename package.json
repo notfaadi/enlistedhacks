@@ -10,7 +10,7 @@
     "build": "node scripts/optimize-images.mjs && astro build && node scripts/prune-dist-images.mjs && node scripts/finalize-sitemap.mjs && node scripts/indexnow.mjs",
     "preview": "astro preview --host 0.0.0.0",
     "start": "node scripts/serve.mjs",
-    "deploy": "wrangler deploy",
+    "deploy": "npx wrangler deploy",
     "astro": "astro",
     "optimize:images": "node scripts/optimize-images.mjs",
     "images:enlisted": "node scripts/import-user-gameplay.mjs && node scripts/fetch-enlisted-gameplay.mjs && node scripts/optimize-images.mjs",

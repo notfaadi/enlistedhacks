@@ -1,11 +1,11 @@
-/** Canonical origin for production HTML + SEO. */
-const CANONICAL_HOST = 'enlistedhacks.net';
+/** Primary production host (Worker custom domain). */
+const CANONICAL_HOST = 'enlistedhack.net';
 
-/** Hostnames that must 301 to https://enlistedhacks.net (same path/query). */
+/** Hostnames that must 301 to https://enlistedhack.net (same path/query). */
 const REDIRECT_HOSTS = new Set([
-  'www.enlistedhacks.net',
-  'enlistedhack.net',
   'www.enlistedhack.net',
+  'enlistedhacks.net',
+  'www.enlistedhacks.net',
 ]);
 
 /** @param {URL} url */
