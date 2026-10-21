@@ -111,23 +111,9 @@ const checkoutBase = checkoutForSlug(productSlug);
       if (root.hasAttribute('data-checkout-bound')) return;
       root.setAttribute('data-checkout-bound', '');
 
-      const slug = root.getAttribute('data-product-slug') ?? '';
-      const checkoutBySlug: Record<string, string> = {
-        'cloud-dma': 'https://levocheats.com/go/FDI?to=%2Fcloud-dma',
-        'hwid-spoofer': 'https://levocheats.com/go/FDI?to=%2Fhwid-spoofer',
-        ugc: 'https://levocheats.com/go/FDI?to=%2Fugc',
-        'unlock-all': 'https://levocheats.com/go/FDI?to=%2Funlock-all',
-      };
-
       let buyUrl = root.getAttribute('data-buy-url');
       if (!buyUrl || buyUrl.includes('zadeyo.com')) {
-        buyUrl =
-          checkoutBySlug[slug] ?? 'https://levocheats.com/go/FDI?to=%2Fenlisted-cheats';
-      } else if (
-        slug === 'cloud-dma' &&
-        buyUrl.includes('%2Fenlisted-cheats')
-      ) {
-        buyUrl = checkoutBySlug['cloud-dma'];
+        buyUrl = 'https://levocheats.com/go/FDI?to=%2Fenlisted-cheats';
       }
       const plansRaw = root.getAttribute('data-plans');
       if (!plansRaw) return;

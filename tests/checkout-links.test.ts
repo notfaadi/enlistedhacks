@@ -21,19 +21,26 @@ test('homepage Cloud DMA checkout uses Levocheats and plan tiers', () => {
   assert.ok(!html.includes('Enlisted HWID Spoofer'), 'homepage carousel utilities removed');
 });
 
+test('resolveCheckoutHref keeps Cloud DMA Levocheats go link (not Enlisted)', async () => {
+  const { resolveCheckoutHref } = await import('../src/config/checkout.ts');
+  const cloudGo = 'https://levocheats.com/go/FDI?to=%2Fcloud-dma';
+  assert.equal(resolveCheckoutHref(cloudGo), cloudGo);
+  assert.ok(!resolveCheckoutHref(cloudGo).includes('enlisted-cheats'));
+});
+
+test('enlisted-hacks catalog Cloud DMA Buy now uses Levocheats cloud-dma', () => {
+  const hub = path.join(root, 'dist', 'enlisted-hacks', 'index.html');
+  assert.ok(fs.existsSync(hub), 'Run npm run build first');
+  const html = fs.readFileSync(hub, 'utf8');
+  assert.ok(html.includes(LEVO_CLOUD_DMA), 'Cloud DMA card must link to Levocheats cloud-dma');
+});
+
 test('product pages link Buy now to matching Levocheats store paths', () => {
   const cloud = path.join(root, 'dist', 'products', 'enlisted-hacks', 'cloud-dma', 'index.html');
   const hwid = path.join(root, 'dist', 'products', 'enlisted-hacks', 'hwid-spoofer', 'index.html');
-  const catalog = path.join(root, 'dist', 'enlisted-hacks', 'index.html');
   assert.ok(fs.existsSync(cloud) && fs.existsSync(hwid), 'Run npm run build first');
   assert.ok(fs.readFileSync(cloud, 'utf8').includes(LEVO_CLOUD_DMA));
   assert.ok(fs.readFileSync(hwid, 'utf8').includes(LEVO_HWID));
-  assert.ok(fs.existsSync(catalog), 'Run npm run build first');
-  const catalogHtml = fs.readFileSync(catalog, 'utf8');
-  assert.ok(
-    catalogHtml.includes(LEVO_CLOUD_DMA),
-    'Enlisted Cloud DMA catalog Buy now must link to Levocheats cloud-dma',
-  );
 });
 
 test('404 page is noindex without homepage SEO keywords', () => {

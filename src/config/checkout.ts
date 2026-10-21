@@ -43,46 +43,48 @@ export function checkoutForSlug(slug: string): string {
   return levocheatsCheckoutForSlug(slug);
 }
 
-/** Levocheats affiliate `?to=` store path → internal product slug. */
-function slugFromLevocheatsStorePath(storePath: string): string | null {
-  const path = decodeURIComponent(storePath).replace(/\/+$/, '');
-  if (/cloud-dma/i.test(path)) return 'cloud-dma';
-  if (/hwid-spoofer/i.test(path)) return 'hwid-spoofer';
-  if (/unlock-all/i.test(path)) return 'unlock-all';
-  if (/\/ugc$/i.test(path) || path === '/ugc' || path === 'ugc') return 'ugc';
-  if (/enlisted-cheats/i.test(path)) return 'enlisted';
-  const product = path.match(/\/products\/enlisted-hacks\/([^/?#]+)/i)?.[1];
-  if (product) return product === 'skin-changer' ? 'unlock-all' : product;
-  return null;
+/** Levocheats store path segment → internal product slug. */
+const STORE_PATH_TO_SLUG: Record<string, string> = {
+  'enlisted-cheats': 'enlisted',
+  'cloud-dma': 'cloud-dma',
+  'hwid-spoofer': 'hwid-spoofer',
+  ugc: 'ugc',
+  'unlock-all': 'unlock-all',
+};
+
+function slugFromLevocheatsGoHref(href: string): string | null {
+  if (!href.includes('levocheats.com/go/')) return null;
+  try {
+    const to = new URL(href).searchParams.get('to');
+    if (!to) return null;
+    const segment = to.replace(/^\/+|\/+$/g, '').split('/')[0] ?? '';
+    return STORE_PATH_TO_SLUG[segment] ?? segment;
+  } catch {
+    return null;
+  }
 }
 
 function slugFromCheckoutHref(href: string): string | null {
-  if (href.includes('levocheats.com/go/')) {
-    try {
-      const to = new URL(href).searchParams.get('to');
-      if (to) return slugFromLevocheatsStorePath(to);
-    } catch {
-      return null;
-    }
+  const fromGo = slugFromLevocheatsGoHref(href);
+  if (fromGo) return fromGo;
+
+  const productMatch = href.match(/\/products\/enlisted-hacks\/([^/?#]+)/i);
+  if (productMatch?.[1]) {
+    return productMatch[1].replace(/\/$/, '');
   }
 
-  const path = href.startsWith('http') ? href : href.startsWith('/') ? href : `/${href}`;
-
-  const product = path.match(/\/products\/enlisted-hacks\/([^/?#]+)/i)?.[1];
-  if (product) return product === 'skin-changer' ? 'unlock-all' : product;
-
-  if (path.startsWith('/go/')) {
-    const legacy = path.replace(/^\/go\//, '').replace(/\/$/, '');
-    if (legacy === 'skin-changer') return 'unlock-all';
-    if (legacy === 'enlisted') return 'enlisted';
-    if (legacy) return legacy;
+  const legacyGo = href.match(/^\/go\/([^/?#]+)/);
+  if (legacyGo?.[1]) {
+    const raw = legacyGo[1].replace(/\/$/, '');
+    if (raw === 'skin-changer') return 'unlock-all';
+    if (raw === 'enlisted') return 'enlisted';
+    return STORE_PATH_TO_SLUG[raw] ?? raw;
   }
 
-  if (/cloud-dma/i.test(path)) return 'cloud-dma';
-  if (/hwid-spoofer/i.test(path)) return 'hwid-spoofer';
-  if (/unlock-all/i.test(path)) return 'unlock-all';
-  if (/\/ugc\b/i.test(path)) return 'ugc';
-
+  if (/cloud-dma/i.test(href)) return 'cloud-dma';
+  if (/hwid-spoofer/i.test(href)) return 'hwid-spoofer';
+  if (/unlock-all/i.test(href)) return 'unlock-all';
+  if (/\bugc\b/i.test(href)) return 'ugc';
   return null;
 }
 

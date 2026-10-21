@@ -21,9 +21,9 @@ interface Props {
   label: string;
   title: string;
   href: string;
-  buyUrl: string;
-  /** When set, Buy now always uses the Levocheats page for this product slug. */
+  /** Product slug for Levocheats checkout (e.g. cloud-dma). */
   productSlug?: string;
+  buyUrl: string;
   features: string[];
   more?: number;
   icon?: IconName;
@@ -39,8 +39,8 @@ const {
   label,
   title,
   href,
-  buyUrl,
   productSlug,
+  buyUrl,
   features,
   more = 0,
   icon = 'package',
